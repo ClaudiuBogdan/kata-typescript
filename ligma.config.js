@@ -1,9 +1,9 @@
 module.exports = {
-    dsa: [
-        "TwoCrystalBalls",
-        "BubbleSort",
-        "SinglyLinkedList",
-        "DoublyLinkedList",
-    ],
-}
-
+  dsa: [
+    "Queue",
+    "Stack",
+    "QuickSort",
+    "ArrayList",
+    "QuickSort",
+  ],
+};
