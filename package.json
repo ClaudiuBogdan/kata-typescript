@@ -15,9 +15,9 @@
     },
     "scripts": {
         "test": "jest BTPreOrder BTInOrder BTPostOrder",
-        "clear": "node ./scripts/clear.js",
+        "clear": "node ./scripts/v1/clear.js",
         "prettier": "prettier --write ./src",
-        "generate": "node ./scripts/generate.js",
+        "generate": "node ./scripts/v1/generate.js",
         "day": "echo src/day4"
     }
 }
