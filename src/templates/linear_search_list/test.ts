@@ -1,11 +1,14 @@
-import linear_fn from "./index";
+import linearSearch from "./index";
 
-test("linear search array", function () {
-    const foo = [1, 3, 4, 69, 71, 81, 90, 99, 420, 1337, 69420];
-    expect(linear_fn(foo, 69)).toEqual(true);
-    expect(linear_fn(foo, 1336)).toEqual(false);
-    expect(linear_fn(foo, 69420)).toEqual(true);
-    expect(linear_fn(foo, 69421)).toEqual(false);
-    expect(linear_fn(foo, 1)).toEqual(true);
-    expect(linear_fn(foo, 0)).toEqual(false);
+describe("Linear search", () => {
+    test.each([
+        [["o", "b", "c"], "c", 2],
+        [[1, 2, 3, 4, 5], 4, 3],
+        [["s", "t", "r", "i", "n", "g"], "a", -1],
+    ])(
+        "of %o , searching for %o, expected %i",
+        (array: any[], target: any, index: number) => {
+            expect(linearSearch(array, target)).toStrictEqual(index);
+        },
+    );
 });
