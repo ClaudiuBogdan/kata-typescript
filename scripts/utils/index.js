@@ -60,7 +60,7 @@ function copyTemplate(dayPath, templatePath) {
       fs.copyFileSync(filePath, targetPath);
     } // Recursively copy subdirectories
     else if (fs.lstatSync(filePath).isDirectory()) {
-      copyTemplate(filePath, targetPath);
+      copyTemplate(targetPath, filePath);
     }
   });
 }
