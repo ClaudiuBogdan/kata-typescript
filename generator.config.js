@@ -11,6 +11,9 @@ const katas = {
   ],
   tree: [
     "binary_tree_traversal",
+    "binary_tree_compare",
+    "binary_tree_bfs",
+    "binary_tree_dfs",
   ],
 };
 
