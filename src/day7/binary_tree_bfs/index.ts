@@ -30,7 +30,6 @@ function bfs<T>(q: Queue<BinaryNode<T>>, target: T): boolean {
     if (node.right) {
         q.enqueue(node.right);
     }
-    console.log(q);
     return bfs(q, target);
 }
 
