@@ -8,7 +8,18 @@
  */
 
 const BinaryTreeInOrderTraversal = (root: BinaryNode<number>): number[] => {
-    return [];
+    return inOrderTraversal(root, []);
 };
+
+function inOrderTraversal<T>(node: BinaryNode<T>, arr: T[]): T[] {
+    if (node.left) {
+        inOrderTraversal(node.left, arr);
+    }
+    arr.push(node.value);
+    if (node.right) {
+        inOrderTraversal(node.right, arr);
+    }
+    return arr;
+}
 
 export default BinaryTreeInOrderTraversal;
