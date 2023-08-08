@@ -3,6 +3,9 @@
     "moduleNameMapper": {
         "@code/(.*)": [
             "<rootDir>/src/day7/$1"
+        ],
+        "@utils/(.*)": [
+            "<rootDir>/utils/$1"
         ]
     },
     "preset": "ts-jest"

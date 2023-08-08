@@ -1,4 +1,4 @@
-import { tree } from "./tree";
+import { tree } from "@utils/tests";
 import bfs from "./index";
 
 test("bt bfs", function () {

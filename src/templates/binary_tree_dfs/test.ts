@@ -1,4 +1,4 @@
-import { tree } from "./tree";
+import { tree } from "@utils/tests";
 import dfs from "./index";
 
 test("Depth first search on binary tree", function () {
