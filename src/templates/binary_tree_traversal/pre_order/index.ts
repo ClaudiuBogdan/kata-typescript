@@ -7,18 +7,7 @@
  */
 
 const BTPreOrder = (root: BinaryNode<number>): number[] => {
-    return preOrderTraversal(root);
-};
 
-function preOrderTraversal<T>(node: BinaryNode<T>, arr: T[] = []): T[] {
-    arr.push(node.value);
-    if (node.left) {
-        preOrderTraversal(node.left, arr);
-    }
-    if (node.right) {
-        preOrderTraversal(node.right, arr);
-    }
-    return arr;
-}
+};
 
 export default BTPreOrder;
