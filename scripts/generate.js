@@ -5,11 +5,12 @@ const align = require("./align-configs");
 
 const dayName = utils.getDayName();
 const dayPath = utils.createDayDirectory();
-const templatesPath = path.join(__dirname, "..", "src", "templates");
+const baseTemplatePath = path.join(__dirname, "..", "src", "templates");
 
 config.templates.forEach((template) => {
-  const templatePath = path.join(templatesPath, template);
-  const targetPath = path.join(dayPath, template);
+  const templatePath = path.join(baseTemplatePath, ...template.split("/"));
+  const templateName = template.split("/").pop();
+  const targetPath = path.join(dayPath, templateName);
   utils.copyTemplate(targetPath, templatePath);
 });
 
