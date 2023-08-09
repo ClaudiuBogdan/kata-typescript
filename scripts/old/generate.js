@@ -3,7 +3,7 @@ const path = require("path");
 const config = require("../../ligma.config");
 const dsa = require("./dsa");
 
-const src_path = path.join(__dirname, "..", "..", "src");
+const src_path = path.join(__dirname, "..", "..", "src", "katas");
 let day = 1;
 
 try {

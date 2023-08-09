@@ -1,9 +1,15 @@
 {
     "clearMocks": true,
     "moduleNameMapper": {
-        "@code/(.*)": ["<rootDir>/src/day7/$1"],
-        "^@utils/(.*)": ["<rootDir>/src/utils/$1"]
+        "@code/(.*)": [
+            "<rootDir>/src/katas/day8/$1"
+        ],
+        "^@utils/(.*)": [
+            "<rootDir>/src/utils/$1"
+        ]
     },
-    "testPathIgnorePatterns": ["<rootDir>/src/templates/"],
+    "testPathIgnorePatterns": [
+        "<rootDir>/src/templates/"
+    ],
     "preset": "ts-jest"
 }

@@ -1,13 +1,13 @@
 const fs = require("fs");
 const path = require("path");
 
-const srcPath = path.join(__dirname, "..", "..", "src");
+const katasPath = path.join(__dirname, "..", "..", "src", "katas");
 
 function getDayNumber() {
   let day = 1;
 
   try {
-    day = +fs.readdirSync(srcPath)
+    day = +fs.readdirSync(katasPath)
       .filter((i) => i.includes("day"))
       .sort((a, b) => {
         return +b.substring(3) - a.substring(3);
@@ -30,7 +30,7 @@ function getDayName() {
 
 function createDayDirectory() {
   const dayName = getDayName();
-  const dayPath = path.join(srcPath, dayName);
+  const dayPath = path.join(katasPath, dayName);
   const relativeDayPath = path.relative(process.cwd(), dayPath);
   try {
     fs.unlinkSync(dayPath);

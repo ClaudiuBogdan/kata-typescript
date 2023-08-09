@@ -14,11 +14,11 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "test": "jest binary_tree_traversal binary_tree_compare binary_tree_bfs binary_tree_dfs",
-        "clear": "node ./scripts/v1/clear.js",
+        "test": "jest BTPreOrder BTInOrder BTPostOrder",
+        "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
-        "generate": "node ./scripts/v2/generate.js",
-        "generate:v1": "node ./scripts/v1/generate.js",
-        "day": "echo src/day7"
+        "generate": "node ./scripts/generate.js",
+        "generate:old": "node ./scripts/old/generate.js",
+        "day": "echo src/katas/day8"
     }
 }

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const src_path = path.join(__dirname, "..", "..", "src");
+const src_path = path.join(__dirname, "..", "..", "src", "katas");
 
 try {
   fs.readdirSync(src_path)
