@@ -6,7 +6,7 @@ test("Trie", function () {
     trie.insert("fool");
     trie.insert("foolish");
     trie.insert("bar");
-
+    
     expect(trie.startsWith("fo").sort()).toEqual(["foo", "fool", "foolish"]);
 
     expect(trie.search("fool")).toEqual(true);

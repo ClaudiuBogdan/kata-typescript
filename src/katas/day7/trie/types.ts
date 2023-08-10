@@ -4,3 +4,12 @@ export interface ITrie {
     search(word: string): boolean;
     startsWith(prefix: string): string[];
 }
+
+export type TrieChildren = Map<string, TrieNode>;
+
+export type TrieNode = {
+    char: string;
+    parent: TrieNode | null
+    children: TrieChildren;
+    isTerminal: boolean;
+};
