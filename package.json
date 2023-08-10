@@ -14,11 +14,11 @@
         "typescript": "^4.7.4"
     },
     "scripts": {
-        "test": "jest BFSGraphList DFSGraphList DijkstraList InsertionSort MergeSort PrimsList RingBuffer",
+        "test": "jest heap/min_heap heap/max_heap trie/trie",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
         "generate:old": "node ./scripts/old/generate.js",
-        "day": "echo src/katas/day6"
+        "day": "echo src/katas/day7"
     }
 }
