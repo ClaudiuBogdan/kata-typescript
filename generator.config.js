@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/
+
 const katas = {
   search: [
     "search/linear_search_list",
@@ -42,6 +44,7 @@ const katas = {
   ],
   heap: [
     "heap/min_heap",
+    "heap/max_heap",
   ],
   lru: [
     "lru/lru_cache",
@@ -52,5 +55,8 @@ const katas = {
 };
 
 module.exports = {
-  templates: Object.values(katas).flat(), // Change the set based on you daily intended goal
+  templates: [
+    ...katas.heap,
+    ...katas.trie,
+  ], // Change the set based on you daily intended goal
 };

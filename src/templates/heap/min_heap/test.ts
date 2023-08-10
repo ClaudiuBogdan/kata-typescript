@@ -1,9 +1,9 @@
 import MinHeap from "./index";
 
 test("min heap", function () {
-    const heap = new MinHeap();
+    const heap = new MinHeap<number>();
 
-    expect(heap.length).toEqual(0);
+    expect(heap.size).toEqual(0);
 
     heap.insert(5);
     heap.insert(3);
@@ -14,15 +14,16 @@ test("min heap", function () {
     heap.insert(8);
     heap.insert(7);
 
-    expect(heap.length).toEqual(8);
-    expect(heap.delete()).toEqual(1);
-    expect(heap.delete()).toEqual(3);
-    expect(heap.delete()).toEqual(4);
-    expect(heap.delete()).toEqual(5);
-    expect(heap.length).toEqual(4);
-    expect(heap.delete()).toEqual(7);
-    expect(heap.delete()).toEqual(8);
-    expect(heap.delete()).toEqual(69);
-    expect(heap.delete()).toEqual(420);
-    expect(heap.length).toEqual(0);
+    expect(heap.size).toEqual(8);
+    expect(heap.pop()).toEqual(1);
+    expect(heap.pop()).toEqual(3);
+    expect(heap.pop()).toEqual(4);
+    expect(heap.pop()).toEqual(5);
+    expect(heap.size).toEqual(4);
+    expect(heap.peek()).toEqual(7);
+    expect(heap.pop()).toEqual(7);
+    expect(heap.pop()).toEqual(8);
+    expect(heap.pop()).toEqual(69);
+    expect(heap.pop()).toEqual(420);
+    expect(heap.size).toEqual(0);
 });
