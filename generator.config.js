@@ -56,7 +56,6 @@ const katas = {
 
 module.exports = {
   templates: [
-    ...katas.heap,
-    ...katas.trie,
+    ...katas.graph
   ], // Change the set based on you daily intended goal
 };
