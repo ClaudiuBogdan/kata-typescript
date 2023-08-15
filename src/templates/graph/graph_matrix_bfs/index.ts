@@ -6,7 +6,7 @@
  * @param source
  * @param target
  */
-export default function bfs(
+export default function breadthFirstSearch(
     graph: WeightedAdjacencyMatrix,
     source: number,
     target: number,
