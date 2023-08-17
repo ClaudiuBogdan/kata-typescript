@@ -15,10 +15,10 @@
     },
     "scripts": {
         "test": "jest",
-        "test:day": "jest graph_list_bfs graph_list_dfs graph_matrix_bfs prims_list dijkstra_list",
+        "test:day": "jest hash_map lru_cache",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
-        "day": "echo src/katas/day8"
+        "day": "echo src/katas/day9"
     }
 }
