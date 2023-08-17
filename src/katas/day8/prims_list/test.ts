@@ -1,5 +1,5 @@
-import prims from "@code/PrimsAlgorithm";
-import { list1 } from "./graph";
+import prims from "./index";
+import { list1 } from "@utils/tests";
 
 test("PrimsAlgorithm", function () {
     // there is only one right answer for this graph
