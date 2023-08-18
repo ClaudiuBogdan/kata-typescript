@@ -13,6 +13,9 @@ test("Map", function() {
 
 
     expect(map.get("bar")).toEqual(69);
+    expect(map.get("foolish")).toEqual(105);
+    expect(map.get("fool")).toEqual(75);
+    expect(map.get("foo")).toEqual(55);
     expect(map.get("blaz")).toEqual(undefined);
 
     map.delete("barblabr");
