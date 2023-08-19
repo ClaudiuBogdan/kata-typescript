@@ -15,8 +15,28 @@
  * @example binarySearch([4,5,6], 2) => -1
  */
 
-const binarySearchRecursive = (array: number[], target: number): number => {
-    
+const binarySearchIterative = (array: number[], target: number): number => {
+    return recursive_binary_search(array, 0, array.length - 1, target);
 };
 
-export default binarySearchRecursive;
+function recursive_binary_search(
+    arr: number[],
+    leftIndex: number,
+    rightIndex: number,
+    value: number,
+): number {
+    if (leftIndex > rightIndex) {
+        return -1;
+    }
+    const middleIndex = leftIndex + Math.floor((rightIndex - leftIndex) / 2);
+    if (arr[middleIndex] === value) {
+        return middleIndex;
+    }
+    if (arr[middleIndex] > value) {
+        return recursive_binary_search(arr, leftIndex, middleIndex - 1, value);
+    } else {
+        return recursive_binary_search(arr, middleIndex + 1, rightIndex, value);
+    }
+}
+
+export default binarySearchIterative;

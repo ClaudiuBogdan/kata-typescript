@@ -7,9 +7,9 @@
  *
  */
 
-const BinaryTreeInOrderTraversal = (root: BinaryNode<number>): number[] => {
+const in_order_traversal = (root: BinaryNode<number>): number[] => {
 
 };
 
 
-export default BinaryTreeInOrderTraversal;
+export default in_order_traversal;

@@ -60,13 +60,13 @@ export default class SinglyLinkedList<T> {
             value: item,
         };
         this._tail = oldTail.next;
-        this._length++
+        this._length++;
     }
     remove(item: T): T | undefined {
         if (this._head?.value === item) {
             this._head = this._head?.next;
             this._tail = this._head === undefined ? undefined : this._tail;
-            this._length--
+            this._length--;
             return item;
         }
         let prevNode = this._head;
@@ -88,8 +88,7 @@ export default class SinglyLinkedList<T> {
         }
 
         prevNode.next = removedNode.next;
-        this._length--
-
+        this._length--;
 
         return removedNode.value;
     }
