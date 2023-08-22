@@ -1,10 +1,11 @@
+const getKatasFrequency = require("./scripts/utils/frequency");
+const path = require("path");
 // https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/
 
 const katas = {
   search: [
-    "search/linear_search_list",
-    "search/binary_search_recursive",
-    "search/binary_search_iterative",
+    "search/linear_search",
+    "search/binary_search",
   ],
   sort: [
     "sort/bubble_sort",
@@ -54,9 +55,36 @@ const katas = {
   ],
 };
 
+const generateKatas = (katas, count) => {
+  const katasPath = path.join(__dirname, "src", "katas");
+  // Initialize frequency map with count 0 and lastDay 0
+  const katasFreq = Object.values(katas).reduce((acc, kataGroup) => {
+    kataGroup.forEach((kataPath) => {
+      const kata = kataPath.split("/").pop();
+      acc[kata] = { count: 0, lastDay: 0, path: kataPath };
+    });
+    return acc;
+  }, {});
+  // Get the frequency of each kata
+  const freq = getKatasFrequency(katasPath, katasFreq);
+  // Order katas by frequency and last day
+  const sortedKatas = Object.keys(freq).sort((a, b) => {
+    const order = freq[a].count - freq[b].count;
+    return order === 0 ? freq[a].lastDay - freq[b].lastDay : order;
+  }).map((kata) => {
+    return freq[kata].path;
+  }).filter((path) => !!path);
+
+  // Get the first count katas
+  const randomKatas = sortedKatas.slice(0, count);
+  // Return the katas in the same order as the kata groups
+  return randomKatas;
+};
+
 module.exports = {
   templates: [
-    ...katas.map,
-    ...katas.lru,
+    // ...katas.map,
+    // ...katas.lru,
+    ...generateKatas(katas, 3),
   ], // Change the set based on you daily intended goal
 };

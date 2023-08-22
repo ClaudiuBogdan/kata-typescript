@@ -33,3 +33,26 @@ The v2/generate.js script will copy the files (template and tests) from the temp
 │   │   │   ├── solution2.ts
 │   │   │   ├── test2.test.ts
 ```
+
+## Katas folder structure
+
+```text
+.
+├── src
+│   ├── katas
+│   │   ├── day1
+│   │   │   ├── binary_search
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── test.ts
+│   │   │   ├── linear_search
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── test.ts
+│   │   ├── day2
+│   │   │   ├── bubble_sort
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── test.ts
+│   │   │   ├── insertion_sort
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── test.ts
+│   │   │   ├── ...
+```
