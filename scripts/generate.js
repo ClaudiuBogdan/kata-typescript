@@ -14,3 +14,4 @@ config.templates.forEach((template) => {
 });
 
 align.package_json(config, dayPath);
+align.stats(utils.katasPath);

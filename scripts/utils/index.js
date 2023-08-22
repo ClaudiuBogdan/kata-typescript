@@ -70,4 +70,5 @@ module.exports = {
   getDayName,
   createDayDirectory,
   copyTemplate,
+  katasPath,
 };
