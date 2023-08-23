@@ -1,18 +1,3 @@
-export default class RingBuffer<T> {
-    public length: number;
-
+export default class RingBuffer<T> implements IRingBuffer<T> {
     
-
-    constructor() {
-    }
-
-    push(item: T): void {
-
-}
-    get(idx: number): T | undefined {
-
-}
-    pop(): T | undefined {
-
-}
 }

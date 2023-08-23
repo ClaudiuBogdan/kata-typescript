@@ -1,24 +1,28 @@
 import RingBuffer from "./index";
 
-test("RingBuffer", function() {
-    const buffer = new RingBuffer<number>();
+test("RingBuffer", function () {
+    const buffer: IRingBuffer<number> = new RingBuffer<number>(3);
 
-    buffer.push(5);
-    expect(buffer.pop()).toEqual(5);
-    expect(buffer.pop()).toEqual(undefined);
+    buffer.enqueue(5);
+    expect(buffer.dequeue()).toEqual(5);
+    expect(buffer.dequeue()).toEqual(undefined);
 
-    buffer.push(42);
-    buffer.push(9);
-    expect(buffer.pop()).toEqual(42);
-    expect(buffer.pop()).toEqual(9);
-    expect(buffer.pop()).toEqual(undefined);
+    buffer.enqueue(42);
+    buffer.enqueue(9);
+    expect(buffer.isEmpty()).toEqual(false);
+    expect(buffer.dequeue()).toEqual(42);
+    expect(buffer.dequeue()).toEqual(9);
+    expect(buffer.dequeue()).toEqual(undefined);
+    expect(buffer.isEmpty()).toEqual(true);
 
-    buffer.push(42);
-    buffer.push(9);
-    buffer.push(12);
-    expect(buffer.get(2)).toEqual(12);
-    expect(buffer.get(1)).toEqual(9);
-    expect(buffer.get(0)).toEqual(42);
+    buffer.enqueue(42);
+    expect(buffer.peak()).toEqual(42);
+    expect(buffer.dequeue()).toEqual(42);
+
+    expect(buffer.isEmpty()).toEqual(true);
+    expect(buffer.isFull()).toEqual(false);
+    buffer.enqueue(43);
+    buffer.enqueue(44);
+    buffer.enqueue(45);
+    expect(buffer.isFull()).toEqual(true);
 });
-
-
