@@ -15,10 +15,10 @@
     },
     "scripts": {
         "test": "jest",
-        "test:day": "jest hash_map lru_cache",
+        "test:day": "jest insertion_sort merge_sort ring_buffer",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
-        "day": "echo src/katas/day9"
+        "day": "echo src/katas/day10"
     }
 }
