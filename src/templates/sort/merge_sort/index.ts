@@ -15,6 +15,6 @@
  * T(n) = 2T(n/2) + O(n)
  */
 
-export default function mergeSort(array: number[]): number[] {
+export default function mergeSort(arr: number[]): number[] {
   
 }
