@@ -15,10 +15,10 @@
     },
     "scripts": {
         "test": "jest",
-        "test:day": "jest insertion_sort merge_sort ring_buffer",
+        "test:day": "jest maze_solver linear_search binary_search",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
-        "day": "echo src/katas/day10"
+        "day": "echo src/katas/day11"
     }
 }
