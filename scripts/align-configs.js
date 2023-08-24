@@ -2,13 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const generateKatasFrequency = require("./utils/frequency");
 
-module.exports.package_json = function (config, day_path) {
+module.exports.package_json = function (dayPath) {
   const package_json = require("../package.json");
-  const katas = config.templates.map((templatePath) =>
-    String(templatePath).split("/").pop()
-  ).join(" ");
-  package_json.scripts["test:day"] = `jest ${katas}`;
-  package_json.scripts.day = `echo ${day_path}`;
+  package_json.scripts["test:day"] = `jest ${dayPath}`;
+  package_json.scripts.day = `echo ${dayPath}`;
 
   fs.writeFileSync(
     path.join(__dirname, "..", "package.json"),

@@ -13,5 +13,5 @@ config.templates.forEach((template) => {
   utils.copyTemplate(targetPath, templatePath);
 });
 
-align.package_json(config, dayPath);
+align.package_json(dayPath);
 align.stats(utils.katasPath);
