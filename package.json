@@ -15,7 +15,7 @@
     },
     "scripts": {
         "test": "jest",
-        "test:day": "jest maze_solver linear_search binary_search",
+        "test:day": "jest src/katas/day11",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
