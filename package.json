@@ -15,10 +15,10 @@
     },
     "scripts": {
         "test": "jest",
-        "test:day": "jest src/katas/day13",
+        "test:day": "jest src/katas/day14",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/generate.js",
-        "day": "echo src/katas/day13"
+        "day": "echo src/katas/day14"
     }
 }
