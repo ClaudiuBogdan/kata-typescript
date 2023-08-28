@@ -23,7 +23,25 @@ const in_order_traversal = (root: BinaryNode<number>): number[] => {
 
         return path;
     };
-    return recursive(root);
+    
+    const iterative = (root: BinaryNode<number>): number[] => {
+      const stack: BinaryNode<number>[] = []
+      let node: BinaryNode<number> | null | undefined = root
+      while(stack.length > 0 || node){
+        if(node){
+          stack.push(node)
+          node = node.left
+        } else {
+          node = stack.pop() as BinaryNode<number>
+          path.push(node.value)
+          node = node.right
+        }
+      }
+      return path
+    }
+    return iterative(root);
 };
+
+
 
 export default in_order_traversal;
