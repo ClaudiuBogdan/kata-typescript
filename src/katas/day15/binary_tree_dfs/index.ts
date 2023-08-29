@@ -7,5 +7,11 @@
  * @param targe
  */
 export default function depthFirstSearch(head: BinaryNode<number>, target: number): boolean {
-
+  const search = (root: BinaryNode<number> | null): boolean => {
+    if(!root){
+      return false
+    }
+    return root.value === target || search(root.left) || search(root.right)
+  }
+  return search(head)
 }
