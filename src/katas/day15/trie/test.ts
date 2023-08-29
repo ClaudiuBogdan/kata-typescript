@@ -1,19 +1,57 @@
 import Trie from "./index";
 
-test("Trie", function () {
-    const trie = new Trie();
-    trie.insert("foo");
-    trie.insert("fool");
-    trie.insert("foolish");
-    trie.insert("bar");
+describe("Trie", function () {
+    test('search', () => {
+        const trie = new Trie();
+        trie.insert('hello');
+        expect(trie.search('hell')).toEqual(false)
+        expect(trie.search('hello')).toEqual(true)
 
-    expect(trie.startsWith("fo").sort()).toEqual(["foo", "fool", "foolish"]);
+        trie.insert('hell');
+        expect(trie.search('hell')).toEqual(true)
+        expect(trie.search('hello')).toBe(true)
+    })
 
-    expect(trie.search("fool")).toEqual(true);
+    test('delete', () => {
+        const trie = new Trie();
+        trie.insert('hello')
+        trie.insert('hell')
+        expect(trie.search('hello')).toBe(true)
+        expect(trie.search('hell')).toBe(true)
+        
+        trie.delete('hell')
+        expect(trie.search('hell')).toBe(false)
+        expect(trie.search('hello')).toBe(true)
+    })
 
-    trie.delete("fool");
+    test('startsWith', () => {
+        const trie = new Trie();
+        trie.insert('hel');
+        trie.insert('hell');
+        trie.insert('hello');
+        expect(trie.startsWith('hell')).toEqual(['hell', 'hello'])
+        expect(trie.startsWith('helloo')).toEqual([])
+    })
 
-    expect(trie.search("fool")).toEqual(false);
+    test("trie", () => {
+        const trie = new Trie();
+        trie.insert("foo");
+        trie.insert("fool");
+        trie.insert("foolish");
+        trie.insert("bar");
 
-    expect(trie.startsWith("fo").sort()).toEqual(["foo", "foolish"]);
+        expect(trie.startsWith("fo").sort()).toEqual([
+            "foo",
+            "fool",
+            "foolish",
+        ]);
+        
+        expect(trie.search("fool")).toEqual(true);
+
+        trie.delete("fool");
+
+        expect(trie.search("fool")).toEqual(false);
+
+        expect(trie.startsWith("fo").sort()).toEqual(["foo", "foolish"]);
+    });
 });
