@@ -8,6 +8,23 @@
  * @returns {boolean}
  */
 
-export default function breadthFirstSearch(head: BinaryNode<number>, target: number): boolean {
-
+export default function breadthFirstSearch(
+    head: BinaryNode<number>,
+    target: number,
+): boolean {
+    const queue: BinaryNode<number>[] = [];
+    queue.push(head);
+    while (queue.length > 0) {
+        const node = queue.shift() as BinaryNode<number>;
+        if (node.value === target) {
+            return true;
+        }
+        if (node.left) {
+            queue.push(node.left);
+        }
+        if (node.right) {
+            queue.push(node.right);
+        }
+    }
+    return false
 }
