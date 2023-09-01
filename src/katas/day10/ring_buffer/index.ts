@@ -9,7 +9,7 @@ export default class RingBuffer<T> {
     constructor(size: number) {
         this.size = size;
         this.buff = new Array(size);
-        this.head = 0;
+        this.head = -1;
         this.tail = 0;
         this.empty = true;
         this.full = false;
@@ -28,7 +28,7 @@ export default class RingBuffer<T> {
         }
         this.head = this.getNextPosition(this.head);
         this.buff[this.head] = item;
-        this.full = this.head === this.tail;
+        this.full = this.getNextPosition(this.head) === this.tail;
         this.empty = false;
         return item;
     }
@@ -37,9 +37,9 @@ export default class RingBuffer<T> {
         if (this.isEmpty()) {
             return undefined;
         }
-        this.tail = this.getNextPosition(this.tail);
         const item = this.buff[this.tail];
-        this.empty = this.tail === this.head;
+        this.tail = this.getNextPosition(this.tail);
+        this.empty = this.getNextPosition(this.head) === this.tail;
         this.full = false;
         return item;
     }
