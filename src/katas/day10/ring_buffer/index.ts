@@ -15,14 +15,14 @@ export default class RingBuffer<T> {
         this.full = false;
     }
 
-    public peak(): T | null {
+    public peak(): T | undefined {
         if (this.isEmpty()) {
-            return null;
+            return undefined;
         }
         return this.buff[this.head];
     }
 
-    public enqueue(item: T): T | null {
+    public enqueue(item: T): T | undefined {
         if (this.isFull()) {
             throw new Error("Buffer is full");
         }
@@ -33,9 +33,9 @@ export default class RingBuffer<T> {
         return item;
     }
 
-    public dequeue(): T | null {
+    public dequeue(): T | undefined {
         if (this.isEmpty()) {
-            return null;
+            return undefined;
         }
         this.tail = this.getNextPosition(this.tail);
         const item = this.buff[this.tail];

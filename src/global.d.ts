@@ -45,8 +45,8 @@ declare interface ILRU<K, V> {
 
 declare interface IRingBuffer<T> {
     enqueue(item: T): void; // Adds an item to the buffer
-    dequeue(): T | null;    // Removes and returns the oldest item from the buffer
-    peak(): T | null;       // View the element at the head position without removing it.
+    dequeue(): T | undefined;    // Removes and returns the oldest item from the buffer
+    peak(): T | undefined;       // View the element at the head position without removing it.
     isFull(): boolean;      // Checks if the buffer is full
     isEmpty(): boolean;     // Checks if the buffer is empty
   }

@@ -5,14 +5,14 @@ test("RingBuffer", function () {
 
     buffer.enqueue(5);
     expect(buffer.dequeue()).toEqual(5);
-    expect(buffer.dequeue()).toEqual(null);
+    expect(buffer.dequeue()).toEqual(undefined);
 
     buffer.enqueue(42);
     buffer.enqueue(9);
     expect(buffer.isEmpty()).toEqual(false);
     expect(buffer.dequeue()).toEqual(42);
     expect(buffer.dequeue()).toEqual(9);
-    expect(buffer.dequeue()).toEqual(null);
+    expect(buffer.dequeue()).toEqual(undefined);
     expect(buffer.isEmpty()).toEqual(true);
 
     buffer.enqueue(42);
