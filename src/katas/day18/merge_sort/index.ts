@@ -16,5 +16,48 @@
  */
 
 export default function mergeSort(arr: number[]): number[] {
-  
+    const merge = (
+        arr: number[],
+        lo1: number,
+        hi1: number,
+        lo2: number,
+        hi2: number,
+    ): number[] => {
+        const sortedArr: number[] = [];
+        const lo = lo1;
+        const hi = hi2;
+        while (lo1 <= hi1 && lo2 <= hi2) {
+            if (arr[lo1] < arr[lo2]) {
+              sortedArr.push(arr[lo1])
+              lo1++
+            } else {
+              sortedArr.push(arr[lo2])
+              lo2++
+            }
+        }
+        if(lo1 <= hi1){
+          for(let i = lo1; i <= hi1; i++){
+            sortedArr.push(arr[i])
+          }
+        }
+        if(lo2 <= hi2){
+          for(let i = lo2; i <= hi2; i++){
+            sortedArr.push(arr[i])
+          }
+        }
+        for(let i = lo; i <= hi; i++){
+          arr[i] = sortedArr[i - lo]
+        }
+        return arr;
+    };
+    const sort = (arr: number[], lo: number, hi: number): number[] => {
+        if (lo >= hi) {
+            return arr;
+        }
+        const middle = lo + Math.floor((hi - lo) / 2);
+        sort(arr, lo, middle);
+        sort(arr, middle + 1, hi);
+        return merge(arr, lo, middle, middle + 1, hi);
+    };
+    return sort(arr, 0, arr.length - 1)
 }
