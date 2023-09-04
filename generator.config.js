@@ -81,10 +81,18 @@ const generateKatas = (katas, count) => {
   return randomKatas;
 };
 
+function getCount(defaultCount = 3) {
+  const args = process.argv.slice(2);
+  const countIndex = args.indexOf("--count");
+  const count = countIndex !== -1 ? parseInt(args[countIndex + 1]) : null;
+
+  return isNaN(count) ? defaultCount : count;
+}
+
 module.exports = {
   templates: [
     // ...katas.map,
     // ...katas.lru,
-    ...generateKatas(katas, 3),
+    ...generateKatas(katas, getCount()),
   ], // Change the set based on you daily intended goal
 };
