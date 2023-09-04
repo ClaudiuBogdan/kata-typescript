@@ -15,8 +15,23 @@
  * @example binarySearch([4,5,6], 2) => -1
  */
 
-const binarySearchIterative = (array: number[], target: number): number => {
-    
+const binarySearch = (array: number[], target: number): number => {
+    return bs(array, 0, array.length - 1, target);
 };
 
-export default binarySearchIterative;
+function bs(arr: number[], lo: number, hi: number, target: number): number {
+    if (lo > hi) {
+        return -1;
+    }
+    const middle = lo + Math.floor((hi - lo) / 2); // stupid mistake not to add lo to floor 😅
+    if (arr[middle] === target) {
+        return middle;
+    }
+    if (target < arr[middle]) {
+        return bs(arr, lo, middle - 1, target);
+    } else {
+        return bs(arr, middle + 1, hi, target);
+    }
+}
+
+export default binarySearch;
