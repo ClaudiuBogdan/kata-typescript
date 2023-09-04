@@ -15,8 +15,8 @@
  * @example binarySearch([4,5,6], 2) => -1
  */
 
-const binarySearchIterative = (array: number[], target: number): number => {
+const binarySearch = (array: number[], target: number): number => {
     
 };
 
-export default binarySearchIterative;
+export default binarySearch;
