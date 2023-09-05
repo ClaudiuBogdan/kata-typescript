@@ -18,7 +18,10 @@
         "test:day": "jest src/katas/day19",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
-        "generate": "node ./scripts/generate.js",
+        "generate": "node ./scripts/main.js",
+        "gen": "node ./scripts/main.js",
+        "gen:freq": "node ./scripts/main.js --type freq --count 3",
+        "gen:custom": "node ./scripts/main.js --type custom",
         "day": "echo src/katas/day19"
     }
 }
