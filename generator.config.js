@@ -29,7 +29,7 @@ const katas = {
   list: [
     "list/singly_linked_list",
     "list/doubly_linked_list",
-    "list/array_list",
+    // "list/array_list", -> irrelevant
     "list/stack",
     "list/queue",
     "list/ring_buffer",
