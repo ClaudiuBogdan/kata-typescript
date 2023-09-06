@@ -7,7 +7,17 @@
  */
 
 const BTPostOrder = (root: BinaryNode<number>): number[] => {
-
+    const path: number[] = [];
+    const dfs = (root: BinaryNode<number> | null): number[] => {
+        if (!root) {
+            return path;
+        }
+        dfs(root.left);
+        dfs(root.right);
+        path.push(root.value);
+        return path;
+    };
+    return dfs(root);
 };
 
 export default BTPostOrder;
