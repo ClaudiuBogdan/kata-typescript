@@ -6,6 +6,15 @@
  * @param head
  * @param targe
  */
-export default function depthFirstSearch(head: BinaryNode<number>, target: number): boolean {
-
+export default function depthFirstSearch(
+    head: BinaryNode<number>,
+    target: number,
+): boolean {
+    const dfs = (root: BinaryNode<number> | null): boolean => {
+        if (!root) {
+            return false;
+        }
+        return root.value === target || dfs(root.left) || dfs(root.right);
+    };
+    return dfs(head);
 }
