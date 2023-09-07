@@ -11,28 +11,39 @@ export default function dfs(
     source: number,
     target: number,
 ): number[] | null {
-    const seen: boolean[] = [];
-    const path: number[] = [];
+    const seen: boolean[] = new Array(graph.length).fill(false);
+    const prev: number[] = new Array(graph.length).fill(-1);
 
-    const search = (node: number): boolean => {
+    const search = (node: number): number[] | null => {
         if (node === target) {
-            path.push(node);
-            return true;
+            return getPath(node, prev);
         }
         seen[node] = true;
         for (let edge of graph[node]) {
             if (seen[edge.to]) {
                 continue;
             }
-            const found = search(edge.to);
-            if (found) {
-                path.push(node);
-                return true;
+            prev[edge.to] = node;
+            const path = search(edge.to);
+            if (path) {
+                return path;
             }
         }
-        return false;
+        return null;
     };
 
-    search(source);
-    return path.length === 0 ? null : path.reverse();
+    return search(source);
+}
+
+function getPath(initialNode: number, prev: number[]): number[] {
+    const path: number[] = [];
+    let node = initialNode;
+    for (let i = 0; i <= prev.length; i++) {
+        if (node === -1) {
+            return path.reverse();
+        }
+        path.push(node);
+        node = prev[node];
+    }
+    throw new Error("Invalid path.");
 }
