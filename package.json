@@ -15,13 +15,13 @@
     },
     "scripts": {
         "test": "jest",
-        "test:day": "jest src/katas/day22",
+        "test:day": "jest src/katas/day23",
         "clear": "node ./scripts/old/clear.js",
         "prettier": "prettier --write ./src",
         "generate": "node ./scripts/main.js",
         "gen": "node ./scripts/main.js",
         "gen:freq": "node ./scripts/main.js --type freq --count 3",
         "gen:custom": "node ./scripts/main.js --type custom",
-        "day": "echo src/katas/day22"
+        "day": "echo src/katas/day23"
     }
 }
