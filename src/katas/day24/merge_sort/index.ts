@@ -16,5 +16,33 @@
  */
 
 export default function mergeSort(arr: number[]): number[] {
-  
+    if (arr.length <= 1) {
+        return arr;
+    }
+    const middle = Math.floor(arr.length / 2);
+    const left = arr.slice(0, middle);
+    const right = arr.slice(middle, arr.length);
+    return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left: number[], right: number[]): number[] {
+    const arr: number[] = [];
+    let leftIdx = 0;
+    let rightIdx = 0;
+    while (leftIdx < left.length && rightIdx < right.length) {
+        if (left[leftIdx] < right[rightIdx]) {
+            arr.push(left[leftIdx]);
+            leftIdx++;
+        } else {
+            arr.push(right[rightIdx]);
+            rightIdx++;
+        }
+    }
+    if (leftIdx < left.length) {
+        arr.push(...left.slice(leftIdx));
+    }
+    if (rightIdx < right.length) {
+        arr.push(...right.slice(rightIdx));
+    }
+    return arr;
 }
