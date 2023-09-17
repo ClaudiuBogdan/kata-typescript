@@ -49,6 +49,10 @@ export default class LRU<K, V> {
         if (!node) {
             return;
         }
+        if(node === this._head){
+            return node.value
+        }
+        this.unlinkNode(node);
         this.updateHead(node);
         return node.value;
     }
@@ -62,6 +66,12 @@ export default class LRU<K, V> {
         this.linkNodes(prev, next);
         node.prev = undefined;
         node.next = undefined;
+        if (node === this._head) {
+            this._head = next;
+        }
+        if (node === this._tail) {
+            this._tail = prev;
+        }
     }
 
     private linkNodes(nodeA?: ListNode<K, V>, nodeB?: ListNode<K, V>): void {
@@ -81,6 +91,9 @@ export default class LRU<K, V> {
     }
 
     private updateHead(node: ListNode<K, V>): void {
+        if(node === this._head){
+            return;
+        }
         this.linkNodes(node, this._head);
         this._head = node;
         if (this._length === 1) {
