@@ -6,6 +6,19 @@
  * @param head
  * @param targe
  */
-export default function depthFirstSearch(head: BinaryNode<number>, target: number): boolean {
+export default function depthFirstSearch(
+    head: BinaryNode<number>,
+    target: number,
+): boolean {
+  return search(head, target)
+}
 
+function search(root: BinaryNode<number> | null, target: number): boolean {
+    if (!root) {
+        return false;
+    }
+    if (root.value === target) {
+        return true;
+    }
+    return search(root.left, target) || search(root.right, target);
 }
