@@ -60,6 +60,12 @@ const katas = {
     "dynamic_programming/fibonacci_sequence",
     "dynamic_programming/knapsack",
   ],
+  strings: [
+    "strings/anagram_check",
+    "strings/palindrome_check",
+    "strings/regular_expression_matching",
+    "strings/string_matching",
+  ],
 };
 
 module.exports = {
