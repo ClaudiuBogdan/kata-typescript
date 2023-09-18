@@ -51,6 +51,12 @@ const katas = {
   trie: [
     "trie/trie",
   ],
+  dynamic_programming: [
+    "dynamic_programming/longest_common_subsequence",
+    "dynamic_programming/coin_change",
+    "dynamic_programming/fibonacci_sequence",
+    "dynamic_programming/knapsack",
+  ],
 };
 
 module.exports = {
