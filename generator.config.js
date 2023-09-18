@@ -25,6 +25,9 @@ const katas = {
     "graph/graph_matrix_bfs",
     "graph/prims_list",
     "graph/dijkstra_list",
+    "graph/kruskal",
+    "graph/floyd_warshall",
+    "graph/bellman_ford",
   ],
   list: [
     "list/singly_linked_list",
