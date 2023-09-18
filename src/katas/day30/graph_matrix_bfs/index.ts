@@ -11,5 +11,37 @@ export default function breadthFirstSearch(
     source: number,
     target: number,
 ): number[] | null {
-  
+    const q: number[] = [];
+    const seen: boolean[] = new Array(graph.length).fill(false);
+    const prev: number[] = new Array(graph.length).fill(-1);
+    q.push(source);
+    while (q.length > 0) {
+        const node = q.shift()!;
+        seen[node] = true;
+        if (node === target) {
+            return getPath(prev, target);
+        }
+        for (let i = 0; i < graph.length; i++) {
+            const isConnected = graph[node][i] > 0;
+            if (!isConnected || seen[i]) {
+                continue;
+            }
+            q.push(i);
+            prev[i] = node;
+        }
+    }
+    return null;
+}
+
+function getPath(prev: number[], target: number): number[] {
+    const path: number[] = [];
+    let node = target;
+    for (let i = 0; i <= path.length; i++) {
+        if (node === -1) {
+            return path.reverse();
+        }
+        path.push(node);
+        node = prev[node];
+    }
+    throw new Error("Invalid prev array");
 }
