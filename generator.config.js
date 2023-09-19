@@ -20,6 +20,8 @@ const katas = {
     "binary_tree/binary_tree_dfs",
     "binary_tree/binary_tree_lowest_common_ancestor",
     "binary_tree/binary_tree_search_operations",
+    "binary_tree/red_black_tree",
+    "binary_tree/avl_tree",
   ],
   graph: [
     "graph/graph_list_bfs",
