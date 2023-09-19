@@ -44,6 +44,7 @@ const katas = {
     "graph/maximum_flow",
     "graph/maximum_bipartite_matching",
     "graph/a_star",
+    "graph/cycle_detection",
   ],
   list: [
     "list/singly_linked_list",
