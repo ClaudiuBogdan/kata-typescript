@@ -68,6 +68,12 @@ const katas = {
     "strings/regular_expression_matching",
     "strings/string_matching",
   ],
+  greedy: [
+    "greedy/activity_selection",
+    "greedy/knapsack_fractional",
+    "greedy/huffman_encoding",
+    "greedy/job_sequencing",
+  ],
 };
 
 module.exports = {
