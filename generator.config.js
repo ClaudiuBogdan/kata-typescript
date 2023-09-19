@@ -45,6 +45,9 @@ const katas = {
   problems: [
     "problems/maze_solver",
     "problems/two_crystals_balls",
+    "problems/two_sum",
+    "problems/max_subarray_sum_kadane",
+    "problems/max_subarray_sum_sliding_window",
   ],
   heap: [
     "heap/min_heap",
