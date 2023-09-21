@@ -1,7 +1,7 @@
 /**
  * Represents a node in a Red-Black Tree.
  */
-interface RBNode {
+export interface RBNode {
     key: number;
     color: "RED" | "BLACK";
     left: RBNode | null;
