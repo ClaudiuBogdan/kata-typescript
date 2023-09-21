@@ -96,8 +96,7 @@ const katas = {
 
 module.exports = {
   custom: [
-    ...katas.map,
-    ...katas.lru,
+    "binary_tree/binary_tree_search_operations",
   ], // Change the set based on you daily intended goal
   katas,
 };
