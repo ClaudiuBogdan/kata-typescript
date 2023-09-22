@@ -36,7 +36,6 @@ describe("Binary Search Tree Operations", () => {
         expect(bst.search(7)).toBe(true);
         expect(bst.search(10)).toBe(false);
         bst.delete(3);
-        console.log({bst, left: bst.root?.left})
         expect(bst.search(3)).toBe(false);
     });
 });

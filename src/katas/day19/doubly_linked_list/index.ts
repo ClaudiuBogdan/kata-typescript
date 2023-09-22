@@ -79,7 +79,6 @@ export default class DoublyLinkedList<T> {
         if (idx < 0 || idx >= this.length) {
             return undefined;
         }
-        console.log("length", this.length);
         let node = this._head;
         let currIdx = 0;
         while (currIdx < idx) {
