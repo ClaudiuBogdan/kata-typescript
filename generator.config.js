@@ -98,6 +98,8 @@ module.exports = {
   custom: [
     "binary_tree/binary_tree_search_operations",
     "binary_tree/red_black_tree",
+    "trie/trie",
+    "graph/dijkstra_list",
   ], // Change the set based on you daily intended goal
   katas,
 };
