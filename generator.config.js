@@ -96,10 +96,11 @@ const katas = {
 
 module.exports = {
   custom: [
+    "heap/max_heap",
+    "sort/merge_sort",
+    "binary_tree/binary_tree_bfs",
     "binary_tree/binary_tree_search_operations",
     "binary_tree/red_black_tree",
-    "trie/trie",
-    "graph/dijkstra_list",
   ], // Change the set based on you daily intended goal
   katas,
 };
