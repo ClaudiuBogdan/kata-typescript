@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const deepMerge = require("./merge");
 
 const katasPath = path.join(__dirname, "..", "..", "src", "katas");
 
@@ -71,4 +72,5 @@ module.exports = {
   createDayDirectory,
   copyTemplate,
   katasPath,
+  deepMerge,
 };
