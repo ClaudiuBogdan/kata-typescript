@@ -1,13 +1,13 @@
 declare type Point = {
     x: number;
     y: number;
-}
+};
 
 declare type ListNode<T> = {
-    value: T,
-    next?: ListNode<T>,
-    prev?: ListNode<T>,
-}
+    value: T;
+    next?: ListNode<T>;
+    prev?: ListNode<T>;
+};
 
 declare interface List<T> {
     get length(): number;
@@ -45,8 +45,18 @@ declare interface ILRU<K, V> {
 
 declare interface IRingBuffer<T> {
     enqueue(item: T): void; // Adds an item to the buffer
-    dequeue(): T | undefined;    // Removes and returns the oldest item from the buffer
-    peak(): T | undefined;       // View the element at the head position without removing it.
-    isFull(): boolean;      // Checks if the buffer is full
-    isEmpty(): boolean;     // Checks if the buffer is empty
-  }
+    dequeue(): T | undefined; // Removes and returns the oldest item from the buffer
+    peak(): T | undefined; // View the element at the head position without removing it.
+    isFull(): boolean; // Checks if the buffer is full
+    isEmpty(): boolean; // Checks if the buffer is empty
+}
+
+declare type TemplateMetaData = {
+    name: string;
+    path: string;
+    category: string;
+    difficulty: "easy" | "medium" | "hard" | "very hard" | "expert";
+    disabled?: boolean;
+    startTime?: Date;
+    endTime?: Date;
+};
