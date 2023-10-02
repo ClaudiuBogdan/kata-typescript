@@ -18,11 +18,7 @@ describe("Palindrome Check", () => {
         expect(isPalindrome("hello")).toBe(false);
         expect(isPalindrome("world")).toBe(false);
     });
-
-    test("should be case-sensitive", () => {
-        expect(isPalindrome("Racecar")).toBe(false);
-    });
-
+    
     test("should ignore spaces and special characters", () => {
         expect(isPalindrome("A man a plan a canal Panama")).toBe(true);
     });

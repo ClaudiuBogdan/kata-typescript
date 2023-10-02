@@ -8,6 +8,14 @@
  * isPalindrome("racecar");  // returns true
  * isPalindrome("hello");    // returns false
  */
-export function isPalindrome(str: string): boolean {
-  // Function implementation here
+export function isPalindrome(inputStr: string): boolean {
+    const stack: string[] = [];
+    const str = inputStr.split("").filter(char => char.match(/[a-z]/i)).map(char => char.toLowerCase())
+    for (let i = 0; i < Math.floor(str.length / 2); i++) {
+        const tailIndex = str.length - i - 1;
+        if (str[i] !== str[tailIndex]) {
+            return false;
+        }
+    }
+    return true;
 }
