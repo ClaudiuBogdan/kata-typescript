@@ -24,7 +24,7 @@ describe("Two Sum Problem", () => {
     test("should handle negative numbers", () => {
         const nums = [-1, -2, -3, -4, -5];
         const target = -8;
-        expect(twoSum(nums, target)).toEqual([2, 3]);
+        expect(twoSum(nums, target)).toEqual([2, 4]);
     });
 
     test("should handle zero as part of the pair", () => {
