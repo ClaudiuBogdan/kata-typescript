@@ -1,6 +1,6 @@
 export const meta: TemplateMetaData = {
     name: "Bridges",
-    path: "graph/bridges",
+    id: "graph/bridges",
     category: "graph",
     difficulty: "medium",
     disabled: false,

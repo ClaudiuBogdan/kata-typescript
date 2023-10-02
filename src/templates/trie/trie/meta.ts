@@ -1,6 +1,6 @@
 export const meta: TemplateMetaData = {
     name: "Trie",
-    path: "trie/trie",
+    id: "trie/trie",
     category: "trie",
     difficulty: "hard",
     disabled: false,

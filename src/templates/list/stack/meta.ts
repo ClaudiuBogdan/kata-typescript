@@ -1,6 +1,6 @@
 export const meta: TemplateMetaData = {
     name: "Stack",
-    path: "list/stack",
+    id: "list/stack",
     category: "list",
     difficulty: "easy",
     disabled: false,
