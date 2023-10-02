@@ -52,11 +52,18 @@ declare interface IRingBuffer<T> {
 }
 
 declare type TemplateMetaData = {
+    id: string;
     name: string;
-    path: string;
     category: string;
-    difficulty: "easy" | "medium" | "hard" | "very hard" | "expert";
+    difficulty: TemplatesDifficulty;
     disabled?: boolean;
     startTime?: Date;
     endTime?: Date;
 };
+
+declare type TemplatesDifficulty =
+    | "easy"
+    | "medium"
+    | "hard"
+    | "very hard"
+    | "expert";
