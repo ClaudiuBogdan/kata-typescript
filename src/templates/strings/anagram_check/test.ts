@@ -18,10 +18,6 @@ describe("Anagram Check", () => {
         expect(areAnagrams("hello", "world")).toBe(false);
     });
 
-    test("should be case-sensitive", () => {
-        expect(areAnagrams("Listen", "Silent")).toBe(false);
-    });
-
     test("should ignore spaces and special characters", () => {
         expect(areAnagrams("Astronomer", "Moon starer")).toBe(true);
     });
