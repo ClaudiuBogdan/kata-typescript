@@ -25,7 +25,7 @@ function getTemplates(): MetaData[] {
         })
         .filter((meta) => !meta.disabled);
 
-    return metaDataItems.sort((a, b) => a.freq.count - b.freq.count);
+    return metaDataItems.sort((a, b) => a.freq.lastDay - b.freq.lastDay);
 }
 
 function getItemsByFrequency(): MetaData[] {
