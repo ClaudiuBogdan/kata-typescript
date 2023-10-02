@@ -11,5 +11,22 @@
  * twoSum(nums, target);  // returns [0, 1]
  */
 export function twoSum(nums: number[], target: number): number[] | null {
-    // Function implementation here
+    const idxArr = Array.from({ length: nums.length }, (_, idx) => idx).sort(
+        (a, b) => nums[a] - nums[b],
+    ); // TODO: when sorting the array, also keep track of the original indexes
+    const arr = idxArr.map((i) => nums[i]);
+    let i = 0;
+    let j = arr.length - 1;
+    while (i < j) {
+        const sum = arr[i] + arr[j];
+        if (sum === target) {
+            return [idxArr[i], idxArr[j]].sort((a, b) => a - b);
+        }
+        if (sum < target) {
+            i++;
+        } else {
+            j--;
+        }
+    }
+    return null;
 }
