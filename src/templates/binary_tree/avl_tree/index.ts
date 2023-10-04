@@ -1,7 +1,7 @@
 /**
  * Represents a node in an AVL Tree.
  */
-interface AVLNode {
+export interface AVLNode {
     key: number;
     height: number;
     left: AVLNode | null;
