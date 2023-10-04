@@ -3,5 +3,13 @@
  * @param breaks
  */
 export default function two_crystal_balls(breaks: boolean[]): number {
-   
+    const steps = Math.floor(Math.sqrt(breaks.length));
+    let currStep = steps;
+    for (; currStep < breaks.length && !breaks[currStep]; currStep += steps) {}
+    currStep -= steps;
+    for (; currStep < breaks.length && !breaks[currStep]; currStep++) {}
+    if (currStep >= breaks.length) {
+        return -1;
+    }
+    return currStep;
 }
