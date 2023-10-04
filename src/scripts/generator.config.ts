@@ -18,7 +18,10 @@ export const freqConfig: FreqConfig[] = [
     //     difficulty: "hard",
     //     count: 1,
     // },
-    // {
-    //     ids: ["search/linear_search", "search/binary_search"],
-    // },
+    {
+        ids: [
+            "binary_tree/avl_tree",
+            "binary_tree/red_black_tree"
+        ],
+    },
 ];
