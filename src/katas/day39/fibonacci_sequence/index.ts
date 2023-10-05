@@ -11,5 +11,12 @@
  * fibonacci(10);  // returns 55
  */
 export default function fibonacci(n: number): number {
-    // Function implementation here
+    if(n < 0){
+        throw new Error("Negative numbers are not supported");
+        
+    }
+    if(n === 0 || n === 1){
+        return n
+    }
+    return fibonacci(n - 1) + fibonacci( n - 2)
 }
