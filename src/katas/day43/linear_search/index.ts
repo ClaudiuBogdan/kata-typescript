@@ -12,5 +12,11 @@
  * @example linearSearch([1,5,6], 2) => -1
  */
 export default function linearSearch(arr: number[], target: number): number {
-
+    for (let i = 0; i < arr.length; i++) {
+        const el = arr[i];
+        if (el === target) {
+            return i;
+        }
+    }
+    return -1;
 }
