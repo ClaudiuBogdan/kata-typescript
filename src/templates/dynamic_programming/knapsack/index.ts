@@ -10,7 +10,7 @@
  * knapsack([1, 3, 4, 5], [1, 4, 5, 7], 7);  // returns 9 (items with weight 3 and 4, values 4 and 5)
  * knapsack([2, 3, 4, 5], [3, 4, 5, 6], 5);  // returns 7 (items with weight 2 and 3, values 3 and 4)
  */
-function knapsack(
+export default function knapsack(
     weights: number[],
     values: number[],
     capacity: number,

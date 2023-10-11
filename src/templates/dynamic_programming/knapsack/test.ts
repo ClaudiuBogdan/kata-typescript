@@ -21,7 +21,7 @@ describe("Knapsack Problem", () => {
 
     test("should handle large numbers", () => {
         expect(knapsack([1000, 2000, 3000], [1000, 2000, 3000], 5000)).toBe(
-            4000,
+            5000,
         );
     });
 
