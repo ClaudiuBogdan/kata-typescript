@@ -28,8 +28,8 @@ describe("Longest Common Subsequence", () => {
         expect(longestCommonSubsequence("ABC", "BEC")).toBe("BC");
     });
 
-    test("should return 'ABAD' for strings 'ABABC' and 'BABCAD'", () => {
-        expect(longestCommonSubsequence("ABABC", "BABCAD")).toBe("ABAD");
+    test("should return 'BABC' for strings 'ABABC' and 'BABCAD'", () => {
+        expect(longestCommonSubsequence("ABABC", "BABCAD")).toBe("BABC");
     });
 
     test("should return 'GTAB' for strings 'AGGTAB' and 'GXTXAYB'", () => {
