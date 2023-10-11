@@ -10,5 +10,15 @@
  * coinChange([2], 3);  // returns -1 (no combination can sum to 3)
  */
 export default function coinChange(coins: number[], amount: number): number {
-    // Function implementation here
+    const dp = new Array(amount + 1).fill(Infinity);
+    dp[0] = 0;
+    for (let i = 1; i <= amount; i++) {
+        for (let coin of coins) {
+            const comp = i - coin;
+            if (comp >= 0 && dp[comp] < Infinity) {
+                dp[i] = Math.min(dp[i], dp[comp] + 1);
+            }
+        }
+    }
+    return dp[amount] < Infinity ? dp[amount] : -1;
 }
