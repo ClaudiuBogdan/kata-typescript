@@ -8,8 +8,17 @@
  */
 
 const in_order_traversal = (root: BinaryNode<number>): number[] => {
-
+    return dfs(root, []);
 };
 
+function dfs(root: BinaryNode<number> | null, path: number[]): number[] {
+    if (!root) {
+        return path;
+    }
+    dfs(root.left, path);
+    path.push(root.value);
+    dfs(root.right, path);
+    return path;
+}
 
 export default in_order_traversal;
