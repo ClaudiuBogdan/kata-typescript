@@ -1,12 +1,12 @@
-import { hamiltonianCycle } from "./index";
+import { findHamiltonianCycle } from "./index";
 
 describe("Hamiltonian Cycle Algorithm", () => {
     test("should return null for an empty graph", () => {
-        expect(hamiltonianCycle([])).toBeNull();
+        expect(findHamiltonianCycle([])).toBeNull();
     });
 
     test("should return a cycle for a graph with one vertex", () => {
-        expect(hamiltonianCycle([[0]])).toEqual([0, 0]);
+        expect(findHamiltonianCycle([[0]])).toEqual([0, 0]);
     });
 
     test("should return a valid Hamiltonian cycle", () => {
@@ -17,7 +17,7 @@ describe("Hamiltonian Cycle Algorithm", () => {
             [1, 1, 0, 0, 1],
             [0, 1, 1, 1, 0],
         ];
-        const result = hamiltonianCycle(graph);
+        const result = findHamiltonianCycle(graph);
         expect(result).toEqual([0, 1, 2, 4, 3, 0]);
     });
 
@@ -27,6 +27,6 @@ describe("Hamiltonian Cycle Algorithm", () => {
             [1, 0, 0],
             [0, 0, 0],
         ];
-        expect(hamiltonianCycle(graph)).toBeNull();
+        expect(findHamiltonianCycle(graph)).toBeNull();
     });
 });
