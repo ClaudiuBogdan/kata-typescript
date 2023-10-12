@@ -19,6 +19,6 @@ type Graph = number[][];
  * ];
  * hamiltonianCycle(graph);  // returns [0, 1, 2, 4, 3, 0]
  */
-export function hamiltonianCycle(graph: Graph): number[] | null {
-    // Function implementation here
+export function findHamiltonianCycle(graph: Graph): number[] | null {
+    
 }
