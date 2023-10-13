@@ -11,5 +11,21 @@
  * areAnagrams("hello", "world");  // returns false
  */
 export function areAnagrams(str1: string, str2: string): boolean {
-    // Function implementation here
+    const parse = (str: string) => str.split("").filter(char => char.match(/[a-z]/i)).map(char => char.toLowerCase())
+    const string1 = parse(str1)
+    const string2 = parse(str2)
+
+    const freq = new Map();
+    for(const char of string1){
+        const count = freq.get(char) ?? 0;
+        freq.set(char, count + 1);
+    }
+    for(const char of string2){
+        const count = freq.get(char) ?? 0;
+        if(count === 0){
+            return false
+        }
+        freq.set(char, count - 1)
+    }
+    return true;
 }
