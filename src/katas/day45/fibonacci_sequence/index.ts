@@ -11,5 +11,18 @@
  * fibonacci(10);  // returns 55
  */
 export default function fibonacci(n: number): number {
-    // Function implementation here
+    if (n < 0) {
+        throw new Error("Negative numbers are not supported");
+    } else if (n < 2) {
+        return n;
+    }
+
+    const table: number[] = new Array(n);
+    table[0] = 0;
+    table[1] = 1;
+    for (let i = 2; i <= n; i++) {
+        table[i] = table[i - 1] + table[i - 2];
+    }
+    return table[n];
 }
+
