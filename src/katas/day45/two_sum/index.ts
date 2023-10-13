@@ -11,5 +11,16 @@
  * twoSum(nums, target);  // returns [0, 1]
  */
 export function twoSum(nums: number[], target: number): number[] | null {
-    // Function implementation here
+    const complementMap = new Map<number, number>();
+    for (let i = 0; i < nums.length; i++) {
+        complementMap.set(nums[i], i);
+    }
+    for (let i = 0; i < nums.length; i++) {
+        const compKey = target - nums[i];
+        const compIdex = complementMap.get(compKey);
+        if (compIdex !== undefined && compIdex !== i) {
+            return [i, compIdex];
+        }
+    }
+    return null;
 }
