@@ -38,4 +38,10 @@ describe("Two Sum Problem", () => {
         const target = 6;
         expect(twoSum(nums, target)).toEqual([0, 1]);
     });
+
+    test("should return null when no pair exist and there is an element with half the value of the target", () => {
+        const nums = [1, 2];
+        const target = 4;
+        expect(twoSum(nums, target)).toBeNull();
+    });
 });
