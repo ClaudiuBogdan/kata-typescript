@@ -18,7 +18,7 @@ export function twoSum(nums: number[], target: number): number[] | null {
     for (let i = 0; i < nums.length; i++) {
         const firstNum = nums[i];
         const secondNum = target - firstNum;
-        if (complementMap.has(secondNum)) {
+        if (complementMap.has(secondNum) && complementMap.get(secondNum) !== i) {
             const secondIdx = complementMap.get(secondNum)!;
             return [i, secondIdx];
         }
