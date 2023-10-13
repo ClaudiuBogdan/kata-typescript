@@ -1,7 +1,7 @@
 export const meta: TemplateMetaData = {
-    name: "A*",
-    id: "graph/a_star",
+    name: "Cycle Detection",
+    id: "graph/cycle_detection",
     category: "graph",
     difficulty: "medium",
     disabled: false,
-}
+};

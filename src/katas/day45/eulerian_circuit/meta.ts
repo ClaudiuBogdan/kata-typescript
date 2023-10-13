@@ -1,7 +1,7 @@
 export const meta: TemplateMetaData = {
-    name: "Articulation Points",
-    id: "graph/articulation_points",
+    name: "Eulerian Circuit",
+    id: "graph/eulerian_circuit",
     category: "graph",
     difficulty: "medium",
     disabled: false,
-}
+};
