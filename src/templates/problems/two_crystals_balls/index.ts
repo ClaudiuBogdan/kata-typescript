@@ -5,6 +5,7 @@
  * @param {boolean[]} breaks - An array of booleans where `true` indicates the ball will break from that floor.
  * @returns {number} The minimum number of drops required to find the breaking floor.
  */
-export default function findBreakingFloor(breaks: boolean[]): number {
-  
+
+export default function findBreakingFloor(n: number): number {
+
 }
