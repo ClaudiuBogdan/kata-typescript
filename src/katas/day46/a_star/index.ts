@@ -1,32 +1,78 @@
-/**
- * Represents a weighted, directed graph using an adjacency list.
- * The weight of the edge between vertices u and v is represented as graph[u][v].
- */
-interface WeightedDirectedGraph {
-    [key: number]: { [key: number]: number };
-}
+type WeightedAdjacencyList = GraphEdge[][];
+type GraphEdge = { to: number; weight: number };
 
 /**
  * Finds the shortest path from source to target using the A* algorithm.
  *
- * @param {WeightedDirectedGraph} graph - The adjacency list representation of the graph.
+ * @param {WeightedAdjacencyList} graph - The adjacency list representation of the graph.
  * @param {number} source - The source vertex.
  * @param {number} target - The target vertex.
  * @returns {number[]} - The shortest path from source to target as an array of vertices.
- *
- * @example
- * const graph = {
- *   0: { 1: 1, 2: 4 },
- *   1: { 2: 2, 3: 5 },
- *   2: { 3: 1 },
- *   3: {}
- * };
- * findAStarPath(graph, 0, 3);  // returns [0, 1, 2, 3]
  */
 export function findAStarPath(
-    graph: WeightedDirectedGraph,
+    graph: WeightedAdjacencyList,
     source: number,
     target: number,
 ): number[] {
-    // Function implementation here
+    if (graph.length === 0) {
+        return [];
+    }
+
+    const open: number[] = [source];
+    const closed: number[] = [];
+
+    const gScore: { [key: number]: number } = {};
+    const fScore: { [key: number]: number } = {};
+
+    gScore[source] = 0;
+    fScore[source] = heuristic(source, target);
+
+    const prev: { [key: number]: number } = {};
+
+    while (open.length > 0) {
+        open.sort((a, b) => fScore[a] - fScore[b]);
+        const current = open.shift()!;
+
+        if (current === target) {
+            return reconstructPath(prev, current);
+        }
+
+        closed.push(current);
+
+        for (let neighborEdge of graph[current]) {
+            const neighbor = neighborEdge.to;
+            if (closed.includes(neighbor)) {
+                continue;
+            }
+
+            const tentativeGScore = gScore[current] + neighborEdge.weight;
+            if (!open.includes(neighbor)) {
+                open.push(neighbor);
+            } else if (tentativeGScore >= gScore[neighbor]) {
+                continue;
+            }
+
+            prev[neighbor] = current;
+            gScore[neighbor] = tentativeGScore;
+            fScore[neighbor] = tentativeGScore + heuristic(neighbor, target);
+        }
+    }
+    return [];
+}
+
+function heuristic(source: number, target: number): number {
+    return Math.abs(target - source);
+}
+
+function reconstructPath(
+    prev: { [key: number]: number },
+    current: number,
+): number[] {
+    const path: number[] = [current];
+    while (prev[current] !== undefined) {
+        current = prev[current];
+        path.unshift(current);
+    }
+
+    return path;
 }
