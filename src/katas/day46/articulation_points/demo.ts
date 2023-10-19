@@ -15,14 +15,13 @@
  */
 export function articulationPoints(graph: AdjacencyList): number[] {
     let time = 0;
-    const discovery = new Array(graph.length).fill(-1);
-    const visited = new Array(graph.length).fill(false);
-    const low = new Array(graph.length).fill(-1);
-    const parent = new Array(graph.length).fill(-1);
-    const articulationPoints = new Set<number>();
+    const visited: boolean[] = new Array(graph.length).fill(false);
+    const discovery: number[] = new Array(graph.length).fill(-1);
+    const low: number[] = new Array(graph.length).fill(-1);
+    const parent: number[] = new Array(graph.length).fill(-1);
+    const articulationPoints: Set<number> = new Set();
 
-    const dfs = (u: number) => {
-        // u is the parent in the dfs tree
+    const dfs = (u: number): void => {
         let children = 0;
         visited[u] = true;
         discovery[u] = time;
@@ -36,12 +35,12 @@ export function articulationPoints(graph: AdjacencyList): number[] {
                 dfs(v);
                 low[u] = Math.min(low[u], low[v]);
 
-                // check if u is root and u has more than one children
+                // Check if the current vertex `u` is root of DFS tree and has two or more children
                 if (parent[u] === -1 && children > 1) {
                     articulationPoints.add(u);
                 }
 
-                // if u is not root and lowest value of one of its children is equal or greater than the discovery of u
+                // If `u` is not root and low value of one of its children is greater than discovery value of `u`
                 if (parent[u] !== -1 && low[v] >= discovery[u]) {
                     articulationPoints.add(u);
                 }
@@ -52,7 +51,9 @@ export function articulationPoints(graph: AdjacencyList): number[] {
     };
 
     for (let i = 0; i < graph.length; i++) {
-        dfs(i);
+        if (!visited[i]) {
+            dfs(i);
+        }
     }
 
     return Array.from(articulationPoints);
