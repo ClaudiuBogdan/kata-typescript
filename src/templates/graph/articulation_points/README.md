@@ -118,6 +118,67 @@ Imagine you're exploring a cave system, and you're marking each cave chamber wit
 
 This "way back" is represented by the back edge in the graph, and the condition checks if such a path exists for the child `w` of vertex `v`.
 
+## Low Value Explanation
+
+Let's delve into the provided function and explain the computation of the `low` values.
+
+### Definition:
+
+In the context of the function, the `low` value for a vertex `u` represents the earliest `discovery` timestamp reachable from `u` or any of its descendants in the DFS traversal, by traversing regular tree edges and at most one back edge.
+
+### Explanation with Reference to the Function:
+
+1. **Initialization**: When a vertex `u` is first visited in the DFS traversal, both its `discovery` and `low` values are set to the current `time` value:
+
+    ```typescript
+    discovery[u] = time;
+    low[u] = time;
+    ```
+
+2. **Child Vertex**: For every neighboring vertex `v` of `u`:
+
+    - After visiting vertex `v` (i.e., after the `dfs(v)` call), the `low` value of `u` is updated based on the `low` value of `v`:
+        ```typescript
+        low[u] = Math.min(low[u], low[v]);
+        ```
+        This captures the essence that if the vertex `v` (or any of its descendants) has a back edge to an ancestor of `u`, then `low[u]` will take this into account.
+
+3. **Back Edge**: If there's a back edge from `u` to some already visited vertex `v` that's not the parent of `u`, the `low` value of `u` is updated to the `discovery` time of `v`:
+    ```typescript
+    if (v !== parent[u]) {
+        low[u] = Math.min(low[u], discovery[v]);
+    }
+    ```
+
+### Purpose of Low Value:
+
+The `low` values are used to identify articulation points in the graph:
+
+-   If `u` is the root of the DFS tree and has two or more children, it's an articulation point:
+
+    ```typescript
+    if (parent[u] === -1 && children > 1) {
+        articulationPoints.add(u);
+    }
+    ```
+
+-   If `u` is not the root and the `low` value of one of its children `v` is greater than or equal to the `discovery` value of `u`, then `u` is an articulation point:
+    ```typescript
+    if (parent[u] !== -1 && low[v] >= discovery[u]) {
+        articulationPoints.add(u);
+    }
+    ```
+
+### Intuitive Explanation:
+
+Imagine you are exploring a cave system. Each chamber (vertex) in the cave is given a unique number based on the order in which you discover it. As you explore deeper, sometimes you find shortcuts (back edges) connecting chambers you've already been to.
+
+The `low` value for a chamber helps you remember the earliest chamber you can reach using these shortcuts. If a chamber and all its sub-chambers can't find a shortcut to an earlier chamber without passing through the current chamber, it means that chamber is critical. If it collapses, everyone inside its sub-chambers would be trapped.
+
+This `low` value helps the algorithm identify such critical chambers (articulation points) in the cave system (graph).
+
+I hope this helps clarify the `low` point computation in the provided function!
+
 ## References:
 
 -   [Youtube](https://www.youtube.com/watch?v=jFZsDDB0-vo)
