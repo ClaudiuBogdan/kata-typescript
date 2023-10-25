@@ -1,62 +1,40 @@
-import { huffmanEncoding } from "./index";
+// Import your functions here
+import { huffmanCoding, decode } from "./index";
 
-describe("Huffman Coding Greedy Algorithm", () => {
-    test("should return an empty object for an empty string", () => {
-        expect(huffmanEncoding("")).toEqual({});
+describe("Huffman Coding", () => {
+    test("should encode and decode a simple string", () => {
+        const input = "abracadabra";
+        const [encoded, huffmanTree, huffmanCode] = huffmanCoding(input);
+
+        // Ensure it's encoded to a shorter length
+        expect(encoded.length).toBeLessThan(input.length * 8); // Each ASCII character takes 8 bits
+
+        // Ensure it can be decoded to the original string
+        const decoded = decode(encoded, huffmanTree);
+        expect(decoded).toBe(input);
     });
 
-    test("should return Huffman codes for a single character string", () => {
-        expect(huffmanEncoding("a")).toEqual({ a: "0" });
+    test("should handle strings with multiple distinct characters", () => {
+        const input = "hello world";
+        const [encoded, huffmanTree, huffmanCode] = huffmanCoding(input);
+
+        const decoded = decode(encoded, huffmanTree);
+        expect(decoded).toBe(input);
     });
 
-    test("should return Huffman codes for a string with all identical characters", () => {
-        expect(huffmanEncoding("aaaaa")).toEqual({ a: "0" });
+    test("should handle an empty string", () => {
+        const input = "";
+        const [encoded, huffmanTree, huffmanCode] = huffmanCoding(input);
+
+        const decoded = decode(encoded, huffmanTree);
+        expect(decoded).toBe(input);
     });
 
-    test("should return Huffman codes for each unique character in the string", () => {
-        const text = "abracadabra";
-        const codes = huffmanEncoding(text);
-        expect(Object.keys(codes).sort()).toEqual(
-            ["a", "b", "c", "d", "r"].sort(),
-        );
-    });
+    test("should handle strings with a single character", () => {
+        const input = "aaaaaaa";
+        const [encoded, huffmanTree, huffmanCode] = huffmanCoding(input);
 
-    test("should generate optimal Huffman codes", () => {
-        const text = "this is an example for huffman encoding";
-        const codes = huffmanEncoding(text);
-        // Check if frequently occurring characters have shorter codes
-        expect(codes[" "].length).toBeLessThanOrEqual(codes["x"].length);
-        expect(codes["e"].length).toBeLessThanOrEqual(codes["x"].length);
-    });
-
-    test("should handle case sensitivity", () => {
-        const text = "Aa";
-        const codes = huffmanEncoding(text);
-        expect(codes).toHaveProperty("A");
-        expect(codes).toHaveProperty("a");
-    });
-
-    test("should handle special characters", () => {
-        const text = "!@#";
-        const codes = huffmanEncoding(text);
-        expect(codes).toHaveProperty("!");
-        expect(codes).toHaveProperty("@");
-        expect(codes).toHaveProperty("#");
-    });
-
-    test("should handle numbers", () => {
-        const text = "123";
-        const codes = huffmanEncoding(text);
-        expect(codes).toHaveProperty("1");
-        expect(codes).toHaveProperty("2");
-        expect(codes).toHaveProperty("3");
-    });
-
-    test("should handle a mix of characters, numbers, and special characters", () => {
-        const text = "a1!";
-        const codes = huffmanEncoding(text);
-        expect(codes).toHaveProperty("a");
-        expect(codes).toHaveProperty("1");
-        expect(codes).toHaveProperty("!");
+        const decoded = decode(encoded, huffmanTree);
+        expect(decoded).toBe(input);
     });
 });
