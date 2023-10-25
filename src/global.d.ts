@@ -67,3 +67,21 @@ declare type TemplatesDifficulty =
     | "hard"
     | "very hard"
     | "expert";
+
+declare type FrequencyTable = Map<string, number>;
+declare type HuffmanNode = LeafNode | InternalNode;
+
+declare interface LeafNode {
+    type: "Leaf";
+    character: string;
+    frequency: number;
+}
+
+declare interface InternalNode {
+    type: "Internal";
+    frequency: number;
+    left: HuffmanNode;
+    right: HuffmanNode;
+}
+
+declare type HuffmanCode = Record<string, string>;
