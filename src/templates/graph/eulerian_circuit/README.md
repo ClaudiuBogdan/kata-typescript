@@ -24,4 +24,18 @@ There are various algorithms to find an Eulerian circuit in a graph, if it exist
 
 For most practical purposes, Hierholzer's Algorithm is preferred due to its linear time complexity \( O(|E|) \).
 
+## Even Degree Condition
 
+The condition checks whether all vertices in the graph have an even degree, which is a necessary condition for an Eulerian circuit to exist in an undirected graph.
+
+In graph theory, a vertex's degree is the number of edges connected to it. For a graph to have an Eulerian circuit (a closed walk that traverses every edge exactly once), the following conditions must be met:
+
+1. The graph must be connected, meaning there's a path between every pair of vertices.
+2. All vertices must have an even degree.
+
+The reason for the second condition is intuitive if you think about what it means to enter and leave a vertex:
+
+-   Every time you enter a vertex following one edge, you must also leave it following another edge.
+-   Therefore, for every "in" there must be an "out," making the total number of incident edges (the vertex's degree) an even number.
+
+So, the for-loop is checking this necessary condition. If it finds a vertex with an odd degree, it immediately returns `null` because an Eulerian circuit is impossible in such a case.
