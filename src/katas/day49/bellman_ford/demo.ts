@@ -10,13 +10,16 @@ export function bellmanFord(
     graph: WeightedAdjacencyList,
     source: number,
 ): number[] | null {
+    // Handle empty graph
     if (graph.length === 0) {
         return [];
     }
 
-    const distances = new Array(graph.length).fill(Infinity);
+    // Initialize distance array and set the distance to the source vertex to 0
+    const distances: number[] = Array(graph.length).fill(Infinity);
     distances[source] = 0;
 
+    // Relax edges |V| - 1 times
     for (let i = 1; i < graph.length; i++) {
         for (let u = 0; u < graph.length; u++) {
             for (const edge of graph[u]) {
@@ -28,13 +31,15 @@ export function bellmanFord(
         }
     }
 
+    // Check for negative weight cycles
     for (let u = 0; u < graph.length; u++) {
         for (const edge of graph[u]) {
             if (distances[u] + edge.weight < distances[edge.to]) {
+                // Negative weight cycle detected
                 return null;
             }
         }
     }
-    
+
     return distances;
 }
