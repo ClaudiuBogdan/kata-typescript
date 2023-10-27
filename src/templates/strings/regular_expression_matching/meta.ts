@@ -3,5 +3,5 @@ export const meta: TemplateMetaData = {
     id: "strings/regular_expression_matching",
     category: "strings",
     difficulty: "hard",
-    disabled: false,
+    disabled: true,
 };
