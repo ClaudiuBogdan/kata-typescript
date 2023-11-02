@@ -1,4 +1,4 @@
-/**
+k/**
  * Represents a bridge in the graph as a tuple of vertices.
  */
 type Bridge = [number, number];
@@ -21,15 +21,13 @@ type Bridge = [number, number];
 export function findBridges(graph: AdjacencyList): Bridge[] {
     const bridges: Bridge[] = [];
     const visited: boolean[] = new Array(graph.length).fill(false);
-    const disc: number[] = new Array(graph.length).fill(-1); //discovery time
+    const disc: number[] = new Array(graph.length).fill(-1);
     const low: number[] = new Array(graph.length).fill(-1);
     let time = 0;
 
     const dfs = (u: number, parent: number | null) => {
         visited[u] = true;
-        time++;
-        disc[u] = time;
-        low[u] = time;
+        disc[u] = low[u] = time++;
         for (const v of graph[u]) {
             if (!visited[v]) {
                 dfs(v, u);
@@ -48,5 +46,6 @@ export function findBridges(graph: AdjacencyList): Bridge[] {
             dfs(i, null);
         }
     }
+
     return bridges;
 }
