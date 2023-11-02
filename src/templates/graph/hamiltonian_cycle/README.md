@@ -313,7 +313,122 @@ In this modified code, `visited` is an array of booleans. We set `visited[v] = t
 
 Using an array of booleans for `visited` can offer a small but potentially significant performance gain due to faster lookups and updates.
 
+Alright, let's break down the Hamiltonian Cycle problem and the provided algorithm step-by-step. I'll explain the algorithm and demonstrate its behavior using visual graphs for clarity.
+
+### Problem Definition:
+
+A Hamiltonian cycle (or Hamiltonian circuit) is a cycle in an undirected or directed graph that visits each vertex exactly once and also returns to the starting vertex. Identifying the existence of such a cycle in arbitrary graphs is NP-complete.
+
+### Algorithm Overview:
+
+The algorithm provided is a backtracking algorithm. It starts with an empty path and one-by-one adds vertices to the path. For every added vertex, it checks for feasibility and decides whether to add the vertex or not.
+
+The main steps of the algorithm are:
+
+1. Add a vertex to the Hamiltonian path.
+2. Check to see if adding the current vertex maintains the Hamiltonian properties.
+3. If yes, move forward by adding more vertices.
+4. If the addition of the current vertex doesn't lead to a solution, remove it (backtrack), and then move on to the next vertex.
+5. If the path size has reached the number of vertices in the given graph and the last vertex in the path is adjacent to the starting vertex in the path, then return the path as the Hamiltonian cycle.
+
+### Graph Representation:
+
+The graph is represented as an adjacency matrix. For instance, if `graph[i][j]` is `1`, then there is an edge from vertex `i` to vertex `j`. Otherwise, there's no edge.
+
+Let's visualize the example graph given in the function's comments: \[ \text{graph} = \left[ \begin{array}{ccccc} 0 & 1 & 0 & 1 & 0 \\ 1 & 0 & 1 & 1 & 1 \\ 0 & 1 & 0 & 0 & 1 \\ 1 & 1 & 0 & 0 & 1 \\ 0 & 1 & 1 & 1 & 0 \\ \end{array} \right] \]
+
+I'll first generate a visual representation of this graph.
+
+Here's the visual representation of the graph based on the provided adjacency matrix. The arrows denote the direction of the edges. For instance, there's an edge from vertex 0 to vertex 1, as represented by an arrow pointing from 0 to 1.
+
+Now, let's step through the algorithm:
+
+### Step 1: Initialization
+
+The `findHamiltonianCycle` function initializes the `path` array with a size equal to the number of vertices in the graph. Initially, all values are set to `-1`. The first vertex (vertex `0`) is chosen as the starting point of the Hamiltonian cycle (as it's arbitrary). Therefore, `path[0]` is set to `0`.
+
+The `visited` array keeps track of which vertices have been visited. It's initialized with all values set to `false` except for the first vertex, which is set to `true` since we start from vertex `0`.
+
+### Step 2: Backtracking Utility
+
+The main logic is in the recursive function `hamiltonianCycleUtil`. This function tries to find a Hamiltonian cycle using backtracking.
+
+-   It checks if the current `path` size (`pos`) is equal to the number of vertices. If it is, it means we've added all vertices to the path. Now we just need to check if the last vertex in the path has an edge to the starting vertex (to form a cycle). If it does, we've found a Hamiltonian cycle.
+
+-   If not, the function goes through all the vertices and checks if it's feasible to add the current vertex to the path using the helper function `isSafe`.
+
+### Step 3: Safety Check
+
+The `isSafe` function checks:
+
+1. If the vertex is already visited.
+2. If there's an edge from the last added vertex in the path to the current vertex.
+
+If both conditions are met, it's safe to add the vertex to the path.
+
+### Demonstration:
+
+Let's walk through the algorithm using the example graph and visualize each step. I'll start with the initial state and go through the first few iterations.
+
+Here's the initial state where we have chosen vertex `0` as the starting point of our Hamiltonian cycle (highlighted with a red edge).
+
+Now, we'll proceed with the backtracking approach.
+
+### Iteration 1:
+
+Starting from vertex `0`, we'll look for the next possible vertex to add to our path.
+
+The possibilities from vertex `0` are vertices `1` and `3` (as per the graph). Let's first try with vertex `1`.
+
+I'll add vertex `1` to the path and visualize the result.
+
+Now, we've added vertex `1` to our path, which is represented by the red edge from vertex `0` to vertex `1`.
+
+### Iteration 2:
+
+From vertex `1`, the possibilities are vertices `0`, `2`, `3`, and `4`. Since vertex `0` is our starting point and we want to form a cycle only at the end, we'll skip it for now. Let's try with vertex `2` next.
+
+I'll add vertex `2` to the path and visualize the result.
+
+Now, vertex `2` is added to our path, which is represented by the red edge leading from vertex `1` to vertex `2`.
+
+### Iteration 3:
+
+From vertex `2`, the possibilities are vertices `1` and `4`. Since vertex `1` is already in our path, we'll proceed with vertex `4`.
+
+I'll add vertex `4` to the path and visualize the result.
+
+Now, vertex `4` is added to our path, represented by the red edge leading from vertex `2` to vertex `4`.
+
+### Iteration 4:
+
+From vertex `4`, the possibilities are vertices `1`, `2`, and `3`. Since vertices `1` and `2` are already in our path, we'll proceed with vertex `3`.
+
+I'll add vertex `3` to the path and visualize the result.
+
+Now, vertex `3` is added to our path, represented by the red edge leading from vertex `4` to vertex `3`.
+
+### Iteration 5:
+
+With the current path, if we check the possibility of forming a Hamiltonian cycle, we notice that vertex `3` has an edge leading back to vertex `0` (our starting point). This means we've found a Hamiltonian cycle in the graph.
+
+The cycle formed is: `0 -> 1 -> 2 -> 4 -> 3 -> 0`.
+
+I'll finalize the path to form the Hamiltonian cycle and visualize the complete cycle.
+
+There you have it! The red edges represent the complete Hamiltonian cycle: \(0 \rightarrow 1 \rightarrow 2 \rightarrow 4 \rightarrow 3 \rightarrow 0\).
+
+To summarize:
+
+1. The algorithm starts with an arbitrary starting point, in this case, vertex `0`.
+2. Using backtracking, it tries to add vertices to the path, ensuring that each vertex is visited exactly once.
+3. Once all vertices are in the path, it checks if the last vertex can form an edge with the starting vertex to complete the cycle.
+4. If such a cycle is found, it returns the cycle. Otherwise, it backtracks and tries other possibilities.
+
+The visual steps should provide a clear idea of how the algorithm works. If you'd like further explanations or have any questions, please let me know!
+
 ### References
 
 -   [ChatGPT](https://chat.openai.com/c/3f12fc2b-a98b-484b-8353-ebf8b23dc11b)
+-   [ChatGPT Algorithm explanation](https://chat.openai.com/c/5c5c5383-1996-4487-aecd-de1d3dce2e0c)
 -   [YouTube](https://www.youtube.com/watch?v=dQr4wZCiJJ4)
