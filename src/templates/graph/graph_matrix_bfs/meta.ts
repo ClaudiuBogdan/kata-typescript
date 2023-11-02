@@ -2,6 +2,6 @@ export const meta: TemplateMetaData = {
     name: "Graph Matrix BFS",
     id: "graph/graph_matrix_bfs",
     category: "graph",
-    difficulty: "medium",
+    difficulty: "easy",
     disabled: false,
 };
