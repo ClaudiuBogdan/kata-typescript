@@ -32,10 +32,64 @@ describe("Floyd-Warshall Algorithm", () => {
             [Infinity, 1, 5, 0],
         ];
         expect(floydWarshall(graph)).toEqual([
-            [0, -1, 2, -2],
+            [0, -1, 2, 1],
             [Infinity, 0, 3, 2],
             [Infinity, Infinity, 0, Infinity],
             [Infinity, 1, 4, 0],
         ]);
+    });
+
+    test("Basic Test", () => {
+        const graph = [
+            [0, 5, Infinity, 10],
+            [Infinity, 0, 3, Infinity],
+            [Infinity, Infinity, 0, 1],
+            [Infinity, Infinity, Infinity, 0],
+        ];
+
+        const expected = [
+            [0, 5, 8, 9],
+            [Infinity, 0, 3, 4],
+            [Infinity, Infinity, 0, 1],
+            [Infinity, Infinity, Infinity, 0],
+        ];
+
+        expect(floydWarshall(graph)).toEqual(expected);
+    });
+
+    test("No Direct Paths", () => {
+        const graph = [
+            [0, Infinity, Infinity, 10],
+            [Infinity, 0, 3, Infinity],
+            [Infinity, Infinity, 0, Infinity],
+            [Infinity, Infinity, Infinity, 0],
+        ];
+
+        const expected = [
+            [0, Infinity, Infinity, 10],
+            [Infinity, 0, 3, Infinity],
+            [Infinity, Infinity, 0, Infinity],
+            [Infinity, Infinity, Infinity, 0],
+        ];
+
+        expect(floydWarshall(graph)).toEqual(expected);
+    });
+
+    test("Negative Weights", () => {
+        const graph = [
+            [0, 5, Infinity, 10],
+            [Infinity, 0, -2, Infinity],
+            [Infinity, Infinity, 0, 3],
+            [Infinity, Infinity, Infinity, 0],
+        ];
+
+        const expected = [
+            [0, 5, 3, 6],
+            [Infinity, 0, -2, 1],
+            [Infinity, Infinity, 0, 3],
+            [Infinity, Infinity, Infinity, 0],
+        ];
+
+        expect(floydWarshall(graph)).toEqual(expected);
     });
 });
