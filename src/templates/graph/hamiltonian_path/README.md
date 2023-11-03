@@ -127,3 +127,7 @@ The Hamiltonian Path problem is a classic NP-complete problem, and the algorithm
 -   There is also the space taken by the input graph. If the graph is represented as an adjacency matrix, the space complexity of the graph is \(O(N^2)\), where \(N\) is the number of vertices. However, this does not count towards the algorithm's space complexity if we consider the graph as the input to the function and only calculate the extra space used by the algorithm itself.
 
 Therefore, the overall space complexity of the algorithm is \(O(N)\) for the recursion stack and path storage, not counting the input size. If we include the input, and if it's an adjacency matrix, the total space would be \(O(N^2)\).
+
+## References
+
+-   https://chat.openai.com/c/f6c0649f-86ad-42c9-9967-f2905c46a04e
