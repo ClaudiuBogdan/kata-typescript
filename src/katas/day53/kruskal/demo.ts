@@ -1,13 +1,8 @@
-/**
- * Finds the minimum spanning tree of a connected, undirected graph with weighted edges using Kruskal's Algorithm.
- *
- * @param {WeightedAdjacencyList} graph
- * @returns {number[][]} An array of arrays representing the edges of the minimum spanning tree.
- */
+// Define the GraphEdge and WeightedAdjacencyList types as provided.
 export function kruskal(graph: WeightedAdjacencyList): number[][] {
     const vertices = graph.length;
-
-    const disjointSet = createDisjointSet(vertices);
+    // Initialize the disjoint set
+    const [find, union] = createDisjointSet(vertices);
 
     // Flatten and sort the edges from the adjacency list
     const edges: { from: number; to: number; weight: number }[] = [];
@@ -15,11 +10,7 @@ export function kruskal(graph: WeightedAdjacencyList): number[][] {
         for (const edge of graph[from]) {
             // Avoid duplicating edges by only adding one direction
             if (from < edge.to) {
-                edges.push({
-                    from,
-                    to: edge.to,
-                    weight: edge.weight,
-                });
+                edges.push({ from, to: edge.to, weight: edge.weight });
             }
         }
     }
@@ -32,8 +23,8 @@ export function kruskal(graph: WeightedAdjacencyList): number[][] {
 
     // Iterate over the sorted edges and construct the MST
     for (const edge of edges) {
-        if (disjointSet.find(edge.from) !== disjointSet.find(edge.to)) {
-            disjointSet.union(edge.from, edge.to);
+        if (find(edge.from) !== find(edge.to)) {
+            union(edge.from, edge.to);
             mst.push([edge.from, edge.to]);
         }
     }
@@ -41,16 +32,16 @@ export function kruskal(graph: WeightedAdjacencyList): number[][] {
     return mst;
 }
 
-function createDisjointSet(size: number): {
-    find: FindFunction;
-    union: UnionFunction;
-} {
+type FindFunction = (item: number) => number;
+type UnionFunction = (x: number, y: number) => void;
+
+const createDisjointSet = (size: number): [FindFunction, UnionFunction] => {
     const parent: number[] = Array.from({ length: size }, (_, index) => index);
     const rank: number[] = new Array(size).fill(0);
 
     const find: FindFunction = (item) => {
         if (parent[item] !== item) {
-            parent[item] = find(parent[item]);
+            parent[item] = find(parent[item]); // Path compression
         }
         return parent[item];
     };
@@ -59,25 +50,18 @@ function createDisjointSet(size: number): {
         let xRoot = find(x);
         let yRoot = find(y);
 
-        if (xRoot === yRoot) {
-            return;
-        }
+        if (xRoot === yRoot) return;
 
+        // Union by rank
         if (rank[xRoot] < rank[yRoot]) {
             parent[xRoot] = yRoot;
         } else if (rank[xRoot] > rank[yRoot]) {
             parent[yRoot] = xRoot;
         } else {
             parent[yRoot] = xRoot;
-            rank[xRoot] += rank[xRoot];
+            rank[xRoot]++;
         }
     };
 
-    return {
-        find,
-        union,
-    };
-}
-
-type FindFunction = (item: number) => number;
-type UnionFunction = (x: number, y: number) => void;
+    return [find, union];
+};
