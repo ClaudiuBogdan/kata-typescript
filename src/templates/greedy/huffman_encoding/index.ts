@@ -26,6 +26,6 @@ export const huffmanCoding = (
  * @example
  * const decoded = decode("1010101", huffmanTree);
  */
-export const decode = (encoded: string, root: HuffmanNode): string => {
+export const decode = (encoded: string, root: HuffmanNode | null): string => {
     // Function implementation...
 };
