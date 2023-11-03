@@ -3,7 +3,7 @@
  * @link https://github.com/TheAlgorithms/TypeScript/blob/aab3f3065ae4e0497acaa2a6212ca1d40dcf2134/sorts/quick_sort.ts
  * @description is an algorithm based on divide and conquer approach in which an array is split into sub-arrays and these sub arrays are recursively sorted to get final array
  * @see [Quick Sort](https://www.javatpoint.com/quick-sort)
- * 
+ *
  * @param {number[]} array
  * @returns {number[]}
  * @complexity_analysis
@@ -18,7 +18,31 @@
  */
 
 const quickSort = (arr: number[]): number[] => {
-
+    return sort(arr, 0, arr.length - 1);
 };
 
+function partition(arr: number[], lo: number, hi: number): number {
+    const pivot = arr[hi];
+    let idx = lo - 1;
+
+    for (let i = lo; i < hi; i++) {
+        if (arr[i] < pivot) {
+            idx++;
+            [arr[idx], arr[i]] = [arr[i], arr[idx]];
+        }
+    }
+    idx++;
+    [arr[idx], arr[hi]] = [arr[hi], arr[idx]];
+    return idx;
+}
+
+function sort(arr: number[], lo: number, hi: number): number[] {
+    if (lo >= hi) {
+        return arr;
+    }
+    const pivot = partition(arr, lo, hi);
+    sort(arr, lo, pivot - 1);
+    sort(arr, pivot + 1, hi);
+    return arr;
+}
 export default quickSort;
