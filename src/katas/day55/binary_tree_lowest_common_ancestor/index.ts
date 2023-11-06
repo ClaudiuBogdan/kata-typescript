@@ -31,5 +31,28 @@ export function lowestCommonAncestor(
     p: TreeNode,
     q: TreeNode,
 ): TreeNode | null {
-    // Function implementation here
+    const [ancestor] = search(root, p, q);
+    return ancestor;
+}
+
+function search(
+    root: TreeNode | null,
+    p: TreeNode,
+    q: TreeNode,
+): [root: TreeNode | null, p: boolean, q: boolean] {
+    if (!root) {
+        return [null, false, false];
+    }
+    const leftArr = search(root.left, p, q);
+    if (leftArr[0]) {
+        return leftArr;
+    }
+    const rightArr = search(root.right, p, q);
+    if (rightArr[0]) {
+        return rightArr;
+    }
+    const hasP = leftArr[1] || rightArr[1] || root.val === p.val;
+    const hasQ = leftArr[2] || rightArr[2] || root.val === q.val;
+    const ancestor = hasP && hasQ ? root : null;
+    return [ancestor, hasP, hasQ];
 }
