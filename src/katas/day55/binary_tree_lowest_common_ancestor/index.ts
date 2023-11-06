@@ -31,28 +31,17 @@ export function lowestCommonAncestor(
     p: TreeNode,
     q: TreeNode,
 ): TreeNode | null {
-    const [ancestor] = search(root, p, q);
-    return ancestor;
-}
+    // TODO: chatGPT solution here: https://chat.openai.com/c/f30a046f-9102-4245-be7d-8fc6fabc1ead
+    if (root === null || root.val === p.val || root.val === q.val) {
+        return root;
+    }
 
-function search(
-    root: TreeNode | null,
-    p: TreeNode,
-    q: TreeNode,
-): [root: TreeNode | null, p: boolean, q: boolean] {
-    if (!root) {
-        return [null, false, false];
+    const left = lowestCommonAncestor(root.left, p, q);
+    const right = lowestCommonAncestor(root.right, p, q);
+
+    if (left !== null && right !== null) {
+        return root;
     }
-    const leftArr = search(root.left, p, q);
-    if (leftArr[0]) {
-        return leftArr;
-    }
-    const rightArr = search(root.right, p, q);
-    if (rightArr[0]) {
-        return rightArr;
-    }
-    const hasP = leftArr[1] || rightArr[1] || root.val === p.val;
-    const hasQ = leftArr[2] || rightArr[2] || root.val === q.val;
-    const ancestor = hasP && hasQ ? root : null;
-    return [ancestor, hasP, hasQ];
+
+    return left !== null ? left : right;
 }
