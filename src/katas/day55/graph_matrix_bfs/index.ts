@@ -11,5 +11,34 @@ export default function breadthFirstSearch(
     source: number,
     target: number,
 ): number[] | null {
-  
+    const queue: number[] = [];
+    const seen: boolean[] = new Array(graph.length).fill(false);
+    const prev: number[] = new Array(graph.length).fill(-1);
+
+    queue.push(source);
+
+    while (queue.length > 0) {
+        const node = queue.shift()!;
+        seen[node] = true;
+        if (node === target) {
+            return getPath(prev, target);
+        }
+        for (let i = 0; i < graph[node].length; i++) {
+            if (graph[node][i] > 0 && !seen[i]) {
+                queue.push(i);
+                prev[i] = node
+            }
+        }
+    }
+    return null;
+}
+
+function getPath(prev: number[], target: number): number[] {
+    const path: number[] = [];
+    let node = target;
+    while (node !== -1) {
+        path.push(node);
+        node = prev[node];
+    }
+    return path.reverse();
 }
