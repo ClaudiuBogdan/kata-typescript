@@ -1,15 +1,9 @@
-/**
- * Finds the minimum cut of a weighted, undirected graph.
- *
- * @param {WeightedAdjacencyList} graph - The adjacency list representation of the graph.
- * @returns {number}  the minimum cut value.
- */
 export function findMinimumCut(graph: WeightedAdjacencyList): number {
-    // Handle the case of empty graph
-    if (graph.length === 0 || graph.every((nodes) => nodes.length === 0)) {
-        return 0;
+    // Handle the case of an empty graph or a graph with no edges
+    if (!graph || graph.every((node) => node.length === 0)) {
+        return 0; // The minimum cut for an empty graph is 0
     }
-
+    
     let minCut = Infinity;
     let vertexCount = graph.length;
     let vertices = Array.from({ length: vertexCount }, (_, i) => i);
@@ -25,18 +19,19 @@ export function findMinimumCut(graph: WeightedAdjacencyList): number {
 
 function minimumCutPhase(
     graph: WeightedAdjacencyList,
+    
     vertices: number[],
-): [CutWeight, VertexA, VertexB] {
-    const added: boolean[] = new Array(graph.length).fill(false);
-    const weights: number[] = new Array(graph.length).fill(0);
-    let prevVertex: number = -1;
-    let lastVertex: number = -1;
+): [number, number, number] {
+    let added = new Array(graph.length).fill(false);
+    let weights = new Array(graph.length).fill(0);
+    let prevVertex = -1;
+    let lastVertex = -1;
 
     vertices.forEach((v) => {
         added.fill(false);
         weights.fill(0);
 
-        for (let i = 0; i < graph.length; i++) {
+        for (let i = 0; i < vertices.length; i++) {
             let maxWeight = -1;
             let nextVertex = -1;
 
@@ -68,15 +63,13 @@ function mergeVertices(
     a: number,
     b: number,
 ): void {
-    if (a === -1 || b === -1) {
-        return;
-    }
+    if (a === -1 || b === -1) return;
 
-    // Update edges from b to a
+    // Update the edges from 'b' to 'a'
     graph[b].forEach((bEdge) => {
         let edgeFound = false;
         graph[a] = graph[a].map((aEdge) => {
-            if (aEdge === bEdge) {
+            if (aEdge.to === bEdge.to) {
                 edgeFound = true;
                 return { to: aEdge.to, weight: aEdge.weight + bEdge.weight };
             }
@@ -89,10 +82,10 @@ function mergeVertices(
         }
     });
 
-    // Remove all edges from b
+    // Remove all edges from 'b'
     graph[b] = [];
 
-    // Update edges pointing to b to point a
+    // Update edges pointing to 'b' to point to 'a'
     vertices.forEach((v) => {
         graph[v] = graph[v].map((edge) => {
             if (edge.to === b) {
@@ -102,7 +95,7 @@ function mergeVertices(
         });
     });
 
-    // Remove duplicated edges and sum their weights
+    // Remove duplicate edges and sum their weights
     let combinedEdges = new Map<number, number>();
     graph[a].forEach((edge) => {
         if (combinedEdges.has(edge.to)) {
@@ -117,7 +110,3 @@ function mergeVertices(
 
     graph[a] = Array.from(combinedEdges, ([to, weight]) => ({ to, weight }));
 }
-
-type CutWeight = number;
-type VertexA = number;
-type VertexB = number;
