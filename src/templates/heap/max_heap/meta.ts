@@ -2,6 +2,6 @@ export const meta: TemplateMetaData = {
     name: "Max Heap",
     id: "heap/max_heap",
     category: "heap",
-    difficulty: "medium",
+    difficulty: "easy",
     disabled: false,
 };
