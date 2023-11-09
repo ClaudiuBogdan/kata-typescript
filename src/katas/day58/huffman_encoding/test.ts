@@ -33,6 +33,7 @@ describe("Huffman Coding", () => {
     test("should handle strings with a single character", () => {
         const input = "aaaaaaa";
         const [encoded, huffmanTree, huffmanCode] = huffmanCoding(input);
+        expect(encoded.length).toBeGreaterThan(0);
 
         const decoded = decode(encoded, huffmanTree);
         expect(decoded).toBe(input);
