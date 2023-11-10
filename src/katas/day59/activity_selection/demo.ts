@@ -13,16 +13,18 @@ export interface Activity {
  * @returns {Activity[]} An array of selected activities that don't overlap.
  */
 export function activitySelection(activities: Activity[]): Activity[] {
-    // Sort the activities
-    const sortedActivities = [...activities].sort((a, b) => a.end - b.end);
+    // Sort the activities based on their end times
+    activities.sort((a, b) => a.end - b.end);
 
     const selectedActivities: Activity[] = [];
-    let lastEndTime = -1;
+    let lastSelectedEndTime = -1;
 
-    for (const activity of sortedActivities) {
-        if (activity.start >= lastEndTime) {
+    for (const activity of activities) {
+        // If the start time of the current activity is greater than or equal to
+        // the end time of the last selected activity, then select this activity
+        if (activity.start >= lastSelectedEndTime) {
             selectedActivities.push(activity);
-            lastEndTime = activity.end;
+            lastSelectedEndTime = activity.end;
         }
     }
 
