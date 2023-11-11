@@ -38,4 +38,14 @@ describe("Binary Search Tree Operations", () => {
         bst.delete(3);
         expect(bst.search(3)).toBe(false);
     });
+
+    test("should delete the root", () => {
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(7);
+        bst.delete(5);
+        expect(bst.search(3)).toBe(true);
+        expect(bst.search(7)).toBe(true);
+        expect(bst.search(5)).toBe(false);
+    });
 });
