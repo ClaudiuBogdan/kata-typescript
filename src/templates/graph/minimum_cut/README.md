@@ -25,3 +25,4 @@ Each of these algorithms has its own set of trade-offs and is suited for differe
 ## References
 
 -   [ChatGPT](https://chat.openai.com/c/1c32c314-cb41-4519-a19e-05019cfca743)
+-   [YouTube](https://www.youtube.com/watch?v=4Ih3UhVuEtw)
