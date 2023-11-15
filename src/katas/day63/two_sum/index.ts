@@ -11,5 +11,26 @@
  * twoSum(nums, target);  // returns [0, 1]
  */
 export function twoSum(nums: number[], target: number): number[] | null {
-    // Function implementation here
+    const complementMap = new Map<number, number>();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = nums[i];
+        complementMap.set(complement, i);
+
+        // TODO: no need to worry about duplicated complements, as the second loop will start from left index and the map will save the right index
+        // const index = complementMap.get(complement);
+        // if (index !== undefined) {
+        //     return [index, i];
+        // } else {
+        //     complementMap.set(complement, i);
+        // }
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        const index = complementMap.get(complement);
+        if (index !== undefined && index !== i) {
+            return [i, index];
+        }
+    }
+    return null;
 }
