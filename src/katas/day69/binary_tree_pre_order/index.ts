@@ -7,7 +7,20 @@
  */
 
 const BTPreOrder = (root: BinaryNode<number>): number[] => {
+    return traversal(root, []);
+};
 
+const traversal = (
+    root: BinaryNode<number> | null,
+    path: number[],
+): number[] => {
+    if (!root) {
+        return path;
+    }
+    path.push(root.value);
+    traversal(root.left, path);
+    traversal(root.right, path);
+    return path;
 };
 
 export default BTPreOrder;
