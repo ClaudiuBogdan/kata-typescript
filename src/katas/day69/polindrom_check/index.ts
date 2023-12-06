@@ -9,5 +9,14 @@
  * isPalindrome("hello");    // returns false
  */
 export function isPalindrome(str: string): boolean {
-  // Function implementation here
+    const parsedStr = str
+        .split("")
+        .map((char) => char.toLowerCase())
+        .filter((char) => char.match(/[a-z]/));
+    for (let i = 0; i < parsedStr.length / 2; i++) {
+        if (parsedStr[i] !== parsedStr[parsedStr.length - i - 1]) {
+            return false;
+        }
+    }
+    return true;
 }
