@@ -15,4 +15,19 @@ describe("Merge Sort", () => {
             expect(mergeSort(mergeSortArray)).toStrictEqual(inBuiltSortArr);
         });
     });
+
+    test("should sort an array where the smallest elements are initially in the right half", () => {
+        const inputArray = [3, 2, 1];
+        const expectedOutput = [1, 2, 3];
+
+        expect(mergeSort(inputArray)).toEqual(expectedOutput);
+    });
+
+    test("should sort a larger array with a mix of numbers", () => {
+        const inputArray = [8, 4, 5, 7, 1, 3, 6, 2];
+        const expectedOutput = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        expect(mergeSort(inputArray)).toEqual(expectedOutput);
+    });
+    
 });
