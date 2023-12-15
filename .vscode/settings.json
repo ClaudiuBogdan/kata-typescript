@@ -7,6 +7,8 @@
     "editor.suggestOnTriggerCharacters": false,
     "editor.wordBasedSuggestions": "off",
     "editor.parameterHints.enabled": false,
-    "github.copilot.enable": false
-
+    "github.copilot.enable": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
