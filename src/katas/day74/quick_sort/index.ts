@@ -18,7 +18,31 @@
  */
 
 const quickSort = (arr: number[]): number[] => {
-
+    return sort(arr, 0, arr.length - 1);
 };
+
+function sort(arr: number[], lo: number, hi: number): number[] {
+    if (lo >= hi) {
+        return arr;
+    }
+    const pivotIdx = partition(arr, lo, hi);
+    sort(arr, lo, pivotIdx - 1);
+    sort(arr, pivotIdx + 1, hi);
+    return arr;
+}
+
+function partition(arr: number[], lo: number, hi: number): number {
+    const partitionVal = arr[hi];
+    let idx = lo - 1;
+    for (let i = lo; i < hi; i++) {
+        if (arr[i] < partitionVal) {
+            idx++;
+            [arr[idx], arr[i]] = [arr[i], arr[idx]];
+        }
+    }
+    idx++;
+    [arr[idx], arr[hi]] = [arr[hi], arr[idx]];
+    return idx;
+}
 
 export default quickSort;
