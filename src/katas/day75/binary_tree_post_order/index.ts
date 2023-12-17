@@ -7,7 +7,18 @@
  */
 
 const BTPostOrder = (root: BinaryNode<number>): number[] => {
-
+  return traversal(root, []);
 };
+
+function traversal(root: BinaryNode<number> | null, path: number[]): number[] {
+    if (!root) {
+        return path;
+    }
+    traversal(root.left, path);
+    traversal(root.right, path);
+    path.push(root.value);
+    return path;
+}
+
 
 export default BTPostOrder;
