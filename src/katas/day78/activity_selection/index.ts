@@ -5,7 +5,17 @@
  * @returns {Activity[]} An array of selected activities that don't overlap.
  */
 export function activitySelection(activities: Activity[]): Activity[] {
-    // Function implementation here
+    const sortedActivities = activities.sort((a, b) => a.end - b.end);
+    const results: Activity[] = [];
+    let lastEnd = 0;
+    for (let i = 0; i < sortedActivities.length; i++) {
+        const activity = sortedActivities[i];
+        if (activity.start >= lastEnd) {
+            results.push(activity);
+            lastEnd = activity.end;
+        }
+    }
+    return results;
 }
 
 /**
