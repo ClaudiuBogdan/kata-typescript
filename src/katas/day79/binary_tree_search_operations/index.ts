@@ -27,7 +27,32 @@ export class BST {
      * @param {number} val - The value to insert.
      */
     insert(val: number): void {
-        // Function implementation here
+        let parent: TreeNode | null = null;
+        let node: TreeNode | null = this.root;
+
+        while (node && val !== node.val) {
+            parent = node;
+            if (val < node.val) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+        }
+        if (node) {
+            return;
+        }
+        const newNode: TreeNode = {
+            val,
+            left: null,
+            right: null,
+        };
+        if (!parent) {
+            this.root = newNode;
+        } else if (val < parent.val) {
+            parent.left = newNode;
+        } else {
+            parent.right = newNode;
+        }
     }
 
     /**
@@ -36,7 +61,15 @@ export class BST {
      * @returns {boolean} True if the value is found, otherwise false.
      */
     search(val: number): boolean {
-        // Function implementation here
+        let node = this.root;
+        while (node && val !== node.val) {
+            if (val < node.val) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+        }
+        return !!node;
     }
 
     /**
@@ -44,6 +77,39 @@ export class BST {
      * @param {number} val - The value to delete.
      */
     delete(val: number): void {
-        // Function implementation here
+        let node: TreeNode | null = this.root;
+        let parent: TreeNode | null = null;
+
+        while (node && val !== node.val) {
+            parent = node;
+            if (val <= node.val) {
+                node = node.left;
+            } else {
+                node = node.right;
+            }
+        }
+        if (!node) {
+            return;
+        }
+        if (node.left && node.right) {
+            let successor = node.right;
+            let parentSuccessor = node;
+            while (successor.left) {
+                parentSuccessor = successor;
+                successor = successor.left;
+            }
+            node.val = successor.val;
+            parent = parentSuccessor;
+            node = successor;
+        }
+        const child = node.left || node.right;
+        if (parent === null) {
+            this.root = null;
+        } else if (node === parent.left) {
+            parent.left = child;
+        } else {
+            parent.right = child;
+        }
+
     }
 }
