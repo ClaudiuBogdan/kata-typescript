@@ -4,5 +4,11 @@
  * @param root 
  */
 export default function invertTree(root: BinaryNode<number> | null): BinaryNode<number> | null {
-
+  if (root === null) {
+      return null;
+  }
+  const { left, right } = root;
+  root.left = invertTree(right);
+  root.right = invertTree(left);
+  return root;
 };
