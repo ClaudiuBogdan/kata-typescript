@@ -15,6 +15,49 @@
  * T(n) = 2T(n/2) + O(n)
  */
 
-export default function mergeSort(arr: number[]): number[] {
-  
+export default function sort(arr: number[]): number[] {
+    return mergeSort(arr, 0, arr.length - 1);
+}
+
+function mergeSort(arr: number[], lo: number, hi: number): number[] {
+    if (lo >= hi) {
+        return arr;
+    }
+    const middle = lo + Math.floor((hi - lo) / 2);
+    mergeSort(arr, lo, middle);
+    mergeSort(arr, middle + 1, hi);
+    merge(arr, lo, middle, hi);
+    return arr;
+}
+
+function merge(
+    arr: number[],
+    lo: number,
+    middle: number,
+    hi: number,
+): number[] {
+    const tmpArr: number[] = [];
+    let left = lo;
+    let right = middle + 1;
+    while (left <= middle && right <= hi) {
+        if (arr[left] < arr[right]) {
+            tmpArr.push(arr[left]);
+            left++;
+        } else {
+            tmpArr.push(arr[right]);
+            right++;
+        }
+    }
+    while (left <= middle) {
+        tmpArr.push(arr[left]);
+        left++;
+    }
+    while (right <= middle) {
+        tmpArr.push(arr[right]);
+        right++;
+    }
+    for (let i = 0; i < tmpArr.length; i++) {
+        arr[i + lo] = tmpArr[i];
+    }
+    return arr;
 }
