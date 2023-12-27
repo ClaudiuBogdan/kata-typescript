@@ -9,5 +9,17 @@
  * maxSubarraySum(nums);  // returns 6
  */
 export function maxSubarraySum(nums: number[]): number {
-    // Function implementation here
+    if (nums.length === 0) {
+        return 0;
+    }
+
+    let currMax = nums[0];
+    let globalMax = nums[0];
+
+    for (let i = 1; i < nums.length; i++) {
+        currMax = Math.max(nums[i], nums[i] + currMax);
+        globalMax = Math.max(globalMax, currMax);
+    }
+
+    return globalMax;
 }
