@@ -9,7 +9,7 @@ function compare(
     rootA: BinaryNode<number> | null,
     rootB: BinaryNode<number> | null,
 ): boolean {
-    if (rootA === null || rootB === null) {
+    if (rootA === null && rootB === null) {
         return true;
     }
 
