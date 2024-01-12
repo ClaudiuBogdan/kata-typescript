@@ -16,5 +16,48 @@
  */
 
 export default function mergeSort(arr: number[]): number[] {
-  
+    return mergeSortAux(arr, 0, arr.length - 1);
+}
+
+function mergeSortAux(arr: number[], lo: number, hi: number): number[] {
+    if (lo >= hi) {
+        return arr;
+    }
+    const middleIdx = lo + Math.floor((hi - lo) / 2);
+    mergeSortAux(arr, lo, middleIdx);
+    mergeSortAux(arr, middleIdx + 1, hi);
+    merge(arr, lo, middleIdx, hi);
+    return arr;
+}
+
+function merge(
+    arr: number[],
+    lo: number,
+    middle: number,
+    hi: number,
+): number[] {
+    let left = lo;
+    let right = middle + 1;
+    const tmpArr: number[] = [];
+    while (left <= middle && right <= hi) {
+        if (arr[left] <= arr[right]) {
+            tmpArr.push(arr[left]);
+            left++;
+        } else {
+            tmpArr.push(arr[right]);
+            right++;
+        }
+    }
+    while (left <= middle) {
+        tmpArr.push(arr[left]);
+        left++;
+    }
+    while (right <= middle) {
+        tmpArr.push(arr[right]);
+        right++;
+    }
+    for (let i = 0; i < tmpArr.length; i++) {
+        arr[lo + i] = tmpArr[i];
+    }
+    return arr;
 }
