@@ -16,7 +16,21 @@
  */
 
 const binarySearch = (array: number[], target: number): number => {
-    
+    return bs(array, 0, array.length, target);
 };
+
+function bs(arr: number[], lo: number, hi: number, target: number): number {
+    if (lo > hi) {
+        return -1;
+    }
+    const middle = lo + Math.floor((hi - lo) / 2);
+    if (arr[middle] === target) {
+        return middle;
+    } else if (target < arr[middle]) {
+        return bs(arr, lo, middle - 1, target);
+    } else {
+        return bs(arr, middle + 1, hi, target);
+    }
+}
 
 export default binarySearch;
