@@ -7,5 +7,28 @@
  * @param needle 
  */
 export default function dfs(graph: WeightedAdjacencyList, source: number, target: number): number[] | null {
+  const seen: boolean[] = new Array(graph.length).fill(false);
+  const path: number[] = [];
 
+  const search = (node: number): boolean => {
+      seen[node] = true;
+      if (node === target) {
+          path.push(node);
+          return true;
+      }
+
+      for (let edge of graph[node]) {
+          if (seen[edge.to]) {
+              continue;
+          }
+          const found = search(edge.to);
+          if (found) {
+              path.push(node);
+              return true;
+          }
+      }
+      return false;
+  };
+
+  return search(source) ? path.reverse() : null;
 }
