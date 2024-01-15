@@ -23,5 +23,19 @@ export interface Job {
  * jobSequencing(jobs);  // returns [{ id: 'c', deadline: 1, profit: 40 }, { id: 'a', deadline: 4, profit: 20 }]
  */
 export function jobSequencing(jobs: Job[]): Job[] {
-    // Function implementation here
+    jobs.sort((a, b) => b.profit - a.profit);
+    const results: Job[] = [];
+    const timeSlots: boolean[] = new Array(jobs.length).fill(false);
+
+    for (let i = 0; i < jobs.length; i++) {
+        for (let j = Math.min(jobs.length, jobs[i].deadline) - 1; j >= 0; j--) {
+            if (!timeSlots[j]) {
+                timeSlots[j] = true;
+                results[j] = jobs[i];
+                break;
+            }
+        }
+    }
+
+    return results.filter((job) => job !== undefined && job.profit > 0);
 }
