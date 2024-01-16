@@ -29,6 +29,10 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         return minEl;
     }
 
+    public isEmpty() {
+        return this.size === 0;
+    }
+
     private bubbleUp(idx: number): void {
         if (idx <= 0) {
             return;
@@ -68,4 +72,5 @@ export interface IPriorityQueue<T> {
     size: number;
     enqueue: (item: T) => void;
     dequeue: () => T | undefined;
+    isEmpty: () => boolean;
 }
