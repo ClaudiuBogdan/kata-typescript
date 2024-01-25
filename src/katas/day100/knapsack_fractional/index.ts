@@ -23,5 +23,15 @@ export interface Item {
  * fractionalKnapsack(items, capacity);  // returns 240
  */
 export function fractionalKnapsack(items: Item[], capacity: number): number {
-    // Function implementation here
+    items.sort((a, b) => b.value / b.weight - a.value / a.weight);
+    let currCap = 0;
+    let total = 0;
+    for (let i = 0; i < items.length && currCap < capacity; i++) {
+        const item = items[i];
+        const weight = Math.min(item.weight, capacity - currCap);
+        const value = (weight / item.weight) * item.value;
+        currCap += weight;
+        total += value;
+    }
+    return total;
 }
