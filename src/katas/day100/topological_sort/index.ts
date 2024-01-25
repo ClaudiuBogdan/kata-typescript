@@ -16,5 +16,38 @@
  * topologicalSort(graph);  // returns [0, 2, 1, 3, 4] or null if a cycle is detected
  */
 export function topologicalSort(graph: AdjacencyList): number[] | null {
-    // Function implementation here
+    const seen: boolean[] = new Array(graph.length).fill(false);
+    const recStack: boolean[] = new Array(graph.length).fill(false);
+    const stack: number[] = [];
+
+    const dfs = (node: number): boolean => {
+        if (recStack[node]) {
+            // recursive stack check go first
+            return true;
+        }
+        if (seen[node]) {
+            return false;
+        }
+
+        seen[node] = true;
+        recStack[node] = true;
+
+        for (const neighbor of graph[node]) {
+            if (dfs(neighbor)) {
+                return true;
+            }
+        }
+
+        stack.push(node);
+        recStack[node] = false;
+
+        return false;
+    };
+
+    for (let v = 0; v < graph.length; v++) {
+        if (dfs(v)) {
+            return null;
+        }
+    }
+    return stack.reverse();
 }
