@@ -27,10 +27,10 @@ describe("Fractional Knapsack Greedy Algorithm", () => {
     test("should handle fractional items", () => {
         const items: Item[] = [
             { weight: 10, value: 60 },
-            { weight: 20, value: 100 },
             { weight: 30, value: 120 },
+            { weight: 20, value: 100 },
         ];
-        expect(fractionalKnapsack(items, 15)).toBe(90);
+        expect(fractionalKnapsack(items, 15)).toBe(85);
     });
 
     test("should handle items with the same value-to-weight ratio", () => {
