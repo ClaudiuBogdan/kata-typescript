@@ -3,5 +3,5 @@ export const meta: TemplateMetaData = {
     id: "problems/max_subarray_sum_sliding_window",
     category: "sliding_window",
     difficulty: "medium",
-    disabled: false,
+    disabled: true, // I don't understand this algorithm
 };
