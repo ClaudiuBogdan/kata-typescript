@@ -1,4 +1,5 @@
 /**
+ * 
  * @function BinaryTreeInOrderTraversal
  * @param root {BinaryNode<number>}
  * @returns {number[]}
@@ -8,8 +9,17 @@
  */
 
 const in_order_traversal = (root: BinaryNode<number>): number[] => {
-
+    return traversal(root, []);
 };
 
+function traversal(root: BinaryNode<number> | null, path: number[]): number[] {
+    if (root === null) {
+        return path;
+    }
+    traversal(root.left, path);
+    path.push(root.value);
+    traversal(root.right, path);
+    return path;
+}
 
 export default in_order_traversal;
