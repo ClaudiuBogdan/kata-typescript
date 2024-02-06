@@ -3,5 +3,5 @@ export const meta: TemplateMetaData = {
     id: "graph/minimum_cut",
     category: "graph",
     difficulty: "hard",
-    disabled: false,
+    disabled: true,
 };

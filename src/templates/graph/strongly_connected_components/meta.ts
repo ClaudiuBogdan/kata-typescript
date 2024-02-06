@@ -3,5 +3,5 @@ export const meta: TemplateMetaData = {
     id: "graph/strongly_connected_components",
     category: "graph",
     difficulty: "medium",
-    disabled: false,
+    disabled: true,
 };
