@@ -6,16 +6,95 @@ import { ITrie } from "./types";
  * @link https://www.geeksforgeeks.org/introduction-to-trie-data-structure-and-algorithm-tutorials/
  */
 export default class Trie implements ITrie {
-    insert(word: string): void {
-        throw new Error("Method not implemented.");
+    private root: Node;
+
+    constructor() {
+        this.root = {
+            char: "",
+            children: new Map(),
+            terminal: true,
+            parent: null,
+        };
     }
+
+    insert(word: string): void {
+        let node = this.root;
+        for (const char of word) {
+            const child = node.children.get(char);
+            if (child) {
+                node = child;
+            } else {
+                const newNode = {
+                    char,
+                    children: new Map(),
+                    terminal: false,
+                    parent: node,
+                };
+                node.children.set(char, newNode);
+                node = newNode;
+            }
+        }
+        node.terminal = true;
+    }
+
     delete(word: string): void {
-        throw new Error("Method not implemented.");
+        let node = this.getLastNode(word);
+        if (!node || !node.terminal) {
+            return;
+        }
+        node.terminal = false;
+        if (node.children.size > 0) {
+            return;
+        }
+        while (!node.terminal) {
+            const parent: Node = node.parent!;
+            parent.children.delete(node.char);
+            node = parent;
+        }
     }
     search(word: string): boolean {
-        throw new Error("Method not implemented.");
+        const node = this.getLastNode(word);
+        return !!node && node.terminal;
     }
+
     startsWith(prefix: string): string[] {
-        throw new Error("Method not implemented.");
+        let node = this.getLastNode(prefix);
+        return this.startsWithAux(node, prefix, []);
+    }
+
+    private startsWithAux(
+        node: Node | null,
+        prefix: string,
+        result: string[],
+    ): string[] {
+        if (!node) {
+            return result;
+        }
+        if (node.terminal) {
+            result.push(prefix);
+        }
+        for (const child of node.children.values()) {
+            this.startsWithAux(child, prefix + child.char, result);
+        }
+        return result;
+    }
+
+    private getLastNode(word: string): Node | null {
+        let node = this.root;
+        for (const char of word) {
+            const child = node.children.get(char);
+            if (!child) {
+                return null;
+            }
+            node = child;
+        }
+        return node;
     }
 }
+
+type Node = {
+    char: string;
+    children: Map<string, Node>;
+    terminal: boolean;
+    parent: Node | null;
+};
