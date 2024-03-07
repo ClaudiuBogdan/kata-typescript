@@ -7,5 +7,12 @@
  */
 
 export default function findBreakingFloor(n: number): number {
-    // Implementation here
+    const dp: number[] = Array.from({ length: n + 1 }, (_, i) => i);
+
+    for (let i = 1; i <= n; i++) {
+        for (let j = 0; j <= i; j++) {
+            dp[i] = Math.min(dp[i], Math.max(dp[i - j] + 1, j));
+        }
+    }
+    return dp[n];
 }
